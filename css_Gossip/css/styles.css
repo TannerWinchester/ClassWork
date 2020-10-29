@@ -47,7 +47,7 @@ h3 {
 }
 
 article ul {
-    list-style-image: url("..images\peaceSign.png");
+    list-style-image: url("../images/peaceSign.png");
 }
 #outerwrapper {
     width: 650px;
