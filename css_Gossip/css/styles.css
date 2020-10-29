@@ -1,0 +1,83 @@
+@font-face {
+    font-family: 'source_sans_proregular';
+    src: url('..fonts\sourcesanspro-regular-demo.html') format('woff2'),
+         url('..fonts\sourcesanspro-regular-webfont.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+body {
+    font-size: 1em;
+    font-family: Arial;
+    background-image: url("../images/abstractPic.jpg")
+}
+
+h1 {
+    font-size: 2em;
+    font-family: source_sans_proregular, sans-serif, fantasy;
+}
+
+h3 {
+    font-size: 1em;
+    border-bottom: 1px solid black;
+}
+
+.fonts {
+    color: orange;
+    font-size: 1.5em;
+    font-family: 'Comic Sans MS', 'Times New Roman', serif;
+}
+
+.colors {
+    color: red;
+    font-weight: bold;
+}
+
+.more {
+    color: blue;
+    text-decoration: underline;
+    border: 1px dashed gray;
+    background-color: #d69bbe;
+}
+
+.backgrounds {
+    color: green;
+    font-family: Trebuchet MS;
+    font-size: 1.25em;
+}
+
+article ul {
+    list-style-image: url("..images\peaceSign.png");
+}
+#outerwrapper {
+    width: 650px;
+    background-color: #e7dbf6;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+head {
+    background-color: #e7dbf6;
+    color: white;
+    padding: 10px;
+}
+
+nav {
+    width: 175px;
+    background-color: #e7dbf6;
+    float: left;
+}
+
+article {
+    margin-left: 175px;
+    background-color: white;
+    padding: 10px;
+}
+
+footer {
+    font-size:  12px;
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px;
+}
