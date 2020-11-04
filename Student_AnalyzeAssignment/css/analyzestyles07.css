@@ -1,0 +1,85 @@
+/* Style sheet created by: Tanner Winchester 11/4/20 */
+
+/* Style for body specifies a background color */
+body {
+	background-color: #FFFFFF;
+}
+main {
+	padding: 1em;
+	background-color: #4E9657;
+}
+section {
+	background-color: white;
+	color: #4e9657;
+	padding: 1em;
+	margin-top: 5px;
+}
+.article1 {
+	color: black;
+	border-top: 2px solid grey;
+	padding: 1em;
+	margin-top: 1em;
+}
+.article2 {
+	color: black;
+	padding: 1em;
+	margin-top: 0px;
+}
+aside {
+	border-radius: 10cm;
+	background-color: #4e9657;
+	text-align: center;
+	font-size: x-large;
+	color: white;
+	padding: 1em;
+	margin-top: 10px;
+}
+
+/* Style for the container element */
+#container {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Style for the header element */
+header {
+	font-family: Verdana, Arial, sans-serif;
+	background-color: #FFFFFF;
+	color: #4E9657;
+	padding: 0.5%;
+	margin-left: 1%;
+	font-size: 3em;
+}
+/* Style for the footer element*/
+footer {
+	text-align: center;
+	font-size: .70em;
+}
+
+
+/* Style for the nav element */
+nav {
+	padding: 0.5%;
+}
+
+/* Style for the nav list item elements */
+nav li {
+	display: inline;
+}
+
+/* Style for the nav links element */
+nav li a {
+	color: #4E9657;
+	padding-left: 2%;
+	padding-right: 2%;
+	text-decoration: none;
+}
+/* Style for the table */
+table{
+  width: 100%;
+}
+td, th {
+	border: 1px solid black;
+}
+
