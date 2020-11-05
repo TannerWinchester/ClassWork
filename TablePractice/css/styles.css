@@ -1,0 +1,61 @@
+/* Tanner Winchester 11/5/2020 */
+body {
+    background: linear-gradient(to right, #2a9d8f, #e9c46a, #f4a261)
+}
+colgroup {
+    background-color: #da816a;
+}
+.extracolor {
+    background-color: #e9c46a;
+}
+.firsttable {
+    background-color:  #325f70;
+}
+.secondtable {
+    background-color:#2a9d8f;
+}
+.thirdtable {
+    background-color: #dde2ec;
+}
+table{
+    width: 100%;
+    border-style: solid;
+    border-color: rgb(57, 69, 80);
+    border-spacing: 0px;
+    border-width: 10px;
+    margin-top: 5em;
+    margin-bottom: 10em;
+  }
+  thead {
+    font-weight: bold;
+  }
+  tfoot {
+      text-align: center;
+      font-size: x-large;
+  }
+  caption {
+      font-size: x-large;
+
+  }
+  td{
+      border: 1px solid black;
+  }
+  /* unvisited link */
+a:link {
+    color: #420adb;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: #a11c1c;
+  }
+  
+  /* hover link */
+  a:hover {
+    color: #5e0000;
+  }
+  
+  /* selected link */
+  a:active {
+    color: #0000FF;
+  }
