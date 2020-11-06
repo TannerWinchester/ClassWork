@@ -1,0 +1,26 @@
+/* Tanner Winchester 11/9/2020 */
+table {
+  width: 100%;
+  background-image: linear-gradient(#FFFFFF, #F0F9E6);
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #DFA478; 
+  border-style: solid;
+  color: #000000;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+caption {
+  text-align: left;
+  margin-bottom: 15px;
+}
+table td, th {
+  border-width: 2px;
+  border-color: #DFA478;
+  border-style: solid;
+  padding: 15px;
+}
+
+table thead {
+  background-color: #DFA478;
+}
