@@ -1,0 +1,44 @@
+/* Tanner Winchester */
+@font-face {
+	font-family: 'Roboto';
+	src: url(../fonts/RobotoSlab-VariableFont_wght.ttf);
+}
+.tdLanguage {
+    text-align: center;
+}
+table {
+    font-family: 'Roboto';
+    width: 80%;
+    background-image: linear-gradient(#FFFFFF, #ffffff);
+    border-collapse: collapse;
+    border-width: 2px;
+    border-color: #0e0b09; 
+    border-style: solid;
+    color: #000000;
+    margin: auto;
+    margin-bottom: 20px;
+    margin-top: 5px;
+  }
+  caption {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: x-large;
+    color: black;
+  }
+  table td, th {
+    border-width: 2px;
+    border-color: #202020;
+    border-style: solid;
+    padding: 15px;
+  }
+  
+  table thead {
+    background-color: #d0d1d1;
+  }
+
+  table tfoot {
+    background-color: #d0d1d1;
+    text-align: center;
+    font-weight: bold;
+  }
