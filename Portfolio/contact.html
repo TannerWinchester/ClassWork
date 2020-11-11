@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--Tanner Winchester-->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="A personal Porfolio">
+    <meta name="keyworkds" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Basic Contact Form layout demonstration HTML syntax">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Contact</title>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="index.html"><img src="images/Logo.jpg" alt="Logo"></a>
+     <nav>
+      <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="samples.html">Samples</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      </ul>
+     </nav>
+    </div>
+  </header>
+  <div class="wrapper">
+  <main>
+  <form action="mailto:TannerWinchester@my.cwi.edu?subject=PersonalPortfolioMail" enctype="text/plain" method="POST">
+      <label for="position">Position:</label>
+      <select name="position" id="position">
+        <optgroup label="Employing">
+        <option value="part-time">Part-Time</option>
+        <option value="full-time">Full-Time</option>
+      </optgroup>
+      <optgroup label="Freelance">
+        <option value="contract">Contract</option>
+        <option value="temporary">Temporary</option>
+      </optgroup>
+      </select><br><br>
+    <label for="company">Company:</label><br> 
+    <input type="text" name="compName" size="50" id="company"><br><br>
+		<label for="contact">Person to contact:</label><br>
+		<input type="text" name="contactName" size="30" id="contact"><br><br>
+		<label for="contact">Enter your comments:</label><br>
+    <textarea cols="100" rows="10" name="comment"></textarea><br><br>
+    <fieldset>
+      <p>How did you hear about me?</p>
+    <input type="radio" id="indeed" name="option" value="indeed">
+    <label for="indeed">Indeed</label><br>
+    <input type="radio" id="linkedin" name="option" value="linkedin">
+    <label for="linkedin">LinkedIn</label><br>
+    <input type="radio" id="jobfair" name="option" value="jobfair">
+    <label for="jobfair">Job Fair</label><br>
+    <input type="radio" id="cwi" name="option" value="cwi">
+    <label for="cwi"> CWI Software Development Corporate Partner</label><br><br>
+  </fieldset><br>
+  <div class="buttonholder">
+    <input type="submit" id="submit" value="Submit" class="btn">
+  </div>
+     </form>
+     </main>
+     </div>
+  <footer>
+    <a href="https://github.com/" target="blank"><img src="images/github.png" alt="github"></a>
+    <a href="https://www.linkedin.com/" target="blank"><img src="images/linkedin.png" alt="linkedin"></a>
+  </footer>
+</body>
+</html>
