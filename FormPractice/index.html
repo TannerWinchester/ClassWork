@@ -11,17 +11,34 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>Contact Form Example</title>
 <body>
-    <form action="mailto:TannerWinchester@my.cwi.edu?subject=Personal Portfolio Mail" enctype="text/plain" method="POST">
-		<label for="company">Company:</label><br> 
-		<input type="text" name="compName" size="50" id="company"><br>
-		
+  <form action="mailto:TannerWinchester@my.cwi.edu?subject=PersonalPortfolioMail" enctype="text/plain" method="POST">
+  <fieldset>
+      <label for="position">Position:</label>
+      <select name="position" id="position">
+        <optgroup label="Employing">
+        <option value="part-time">Part-Time</option>
+        <option value="full-time">Full-Time</option>
+      </optgroup>
+      <optgroup label="Freelance">
+        <option value="contract">Contract</option>
+        <option value="temporary">Temporary</option>
+      </optgroup>
+      </select><br><br>
+    <label for="company">Company:</label><br> 
+		<input type="text" name="compName" size="50" id="company"><br><br>
 		<label for="contact">Person to contact:</label><br>
 		<input type="text" name="contactName" size="30" id="contact"><br><br>
-		
-		<label for="comment">Enter your comments:</label><br>
-		<textarea cols="100" rows="10" name="comment"></textarea><br><br>
-		
-		<input type="submit" id="submit" value="Submit" class="btn">
-     </form>
+		<label for="contact">Enter your comments:</label><br>
+    <textarea cols="100" rows="10" name="comment"></textarea><br><br>
+    <input type="radio" id="indeed" name="option" value="indeed">
+    <label for="indeed">Indeed</label><br>
+    <input type="radio" id="linkedin" name="option" value="linkedin">
+    <label for="linkedin">LinkedIn</label><br>
+    <input type="radio" id="jobfair" name="option" value="jobfair">
+    <label for="jobfair">Job Fair</label><br>
+    <input type="radio" id="cwi" name="option" value="cwi">
+    <label for="cwi"> CWI Software Development Corporate Partner</label><br><br>
+    <input type="submit" id="submit" value="Submit" class="btn">
+  </fieldset>
   </body>
 </html>
