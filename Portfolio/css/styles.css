@@ -128,7 +128,7 @@ h1 {
     padding-top: 10px;
 }
 main {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif, Times;
     font-size: large;
     text-align: center;
     color: #222;
