@@ -1,0 +1,116 @@
+/* Tanner Winchester 11/20/20 */
+nav { 
+    font-weight: bold; 
+}
+nav ul li {
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+footer { 
+    background-color: #9BC1C2; 
+    font-size: small;
+    text-align: center;
+    font-style: italic;
+    padding: .5em;
+    margin-bottom: .5em;
+}
+
+main ul {
+    list-style-image: url(../images/yogabullet.png);
+    list-style-type: disc;
+    margin-left: 3em;
+}
+
+header { 
+	background-color: #9BC1C2; 
+	background-position: right;
+	background-repeat: no-repeat;
+}
+h1 { 
+	text-indent: 1em;
+    line-height: 400%; 
+}
+
+
+main img {
+    display: none;
+}
+
+body {
+    background-image: url(../images/yogamobile.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #3F2860;
+    font-family: Verdana, Arial, sans-serif;
+}
+
+table td {
+	border: 1px solid black;
+	text-align: center;
+}
+
+.schedule {
+	border-collapse: collapse;
+	border: 1px solid black;
+	width: 100%;
+	margin-bottom: .5em;
+}
+
+/* Tablet View */
+@media only screen and (min-width: 641px) {
+
+    body { 
+        background-image: none;
+        background-color: #F5F5F5;
+        color: #3F2860;
+        font-family: Verdana, Arial, sans-serif;
+    }
+
+    main img {
+        display: inline-block;
+    }
+    
+    header { 
+        background-color: #9BC1C2; 
+        background-image: url(../images/lilyheader.jpg);
+        background-position: right;
+        background-repeat: no-repeat;
+    }
+    
+    h1 { 
+        text-indent: 1em;
+        line-height: 400%; 
+    }
+    
+    nav { 
+         font-weight: bold; 
+    }
+    
+    nav ul li {
+        display: inline-block;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    footer { 
+        background-color: #9BC1C2; 
+        font-size: small;
+        text-align: center;
+        font-style: italic;
+        padding: .5em;
+        margin-bottom: .5em;
+    }
+    
+    main ul {
+        list-style-image: url(../images/yogabullet.png);
+        list-style-type: disc;
+        margin-left: 3em;
+    }
+    
+
+}
