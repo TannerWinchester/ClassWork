@@ -1,0 +1,43 @@
+/*
+Name: Tanner Winchester
+*/
+
+/* Style rules for hero image and header */
+
+.hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(../images/landingImage.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+header {
+    font-family: 'Acme', sans-serif;
+}
+
+main {
+    font-family: 'Acme', sans-serif;
+}
+
+.navbar-brand,
+.navbar-nav a {
+    font-family: 'Acme', sans-serif;
+}
+
+
+.welcome {
+    position: absolute;
+    top: 30%;
+    margin: auto;
+    padding: 5em;
+    font-family: 'Acme', sans-serif;
+}
+.bg-dark-nav{
+    background-color: black;
+}
+
+
+.welcome h1 {
+    color: rgb(28, 69, 156);
+}
