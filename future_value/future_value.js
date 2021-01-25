@@ -1,52 +1,63 @@
 "use strict";
-let again = "y";
 
-
-do {
-    // get investment amount - loop until user enters a number
-    let investment = 0;
-    do {
-        investment = parseFloat(
-            prompt("Enter investment amount as xxxxx.xx", 10000));
-        
-    }
-    while ( isNaN(investment) || investment <= 0);
-
-    //get interest reate - loop until user enters a number
-    let rate = 0;
-    do {
-        rate = parseFloat(prompt("Enter interest rate as xx.x", 7.5));
-    }
-    while ( isNaN(rate) || rate <= 0 || rate >= 15);
-
-    //get number of years using do loop
-
-    let years = 0;
-    do {
-        years = parseInt(prompt("Enter number of years", 10));
-    }
-    while ( isNaN(years) || years <= 0);
-
-    //write entries
-    document.write(`<h4>Investment amount = ${investment} Interest rate = ${rate} Years = ${years}</h4>`);
-
-
-    //calculate futre value
+const $ = selector => document.querySelector(selector);
+//future value calculation function
+const calculateFV = (investment, rate, years) => {
     let futureValue = investment;
-    for(let i = 1; i <= years; i++ ) {
-        const interest = futureValue * rate / 100;
-        futureValue = futureValue + interest;
-
-        //write results
-        document.write(`<p>Year=${i} Interest=${interest.toFixed(2)} Value=${futureValue.toFixed(2)}</p>`);
-
+    for (let i = 1; i <= years; i++) {
+        futureValue += futureValue * rate / 100;
     }
+    futureValue = futureValue.toFixed(2);
+    return futureValue;
+};
 
-    again = prompt("Repeat entries? (y/n)",  "y");
+
+/*
+const processEntries = () => {
+    const investment = parseFloat($("#investment").value);
+    const rate = parseFloat($("#rate").value);
+    const years = parseFloat($("#years").value);
+    let errorMessage = "";
+
+    if (isNaN(investment) || investment <= 0 || investment > 100000) {
+        errorMessage = "Investment must be a number greater than 0 and less than or equal to 100,000;"
+        $("#investment").focus();
+    } else if (isNaN(rate) || rate<= 0 || rate > 15) {
+        errorMessage = "Rate must be a number greater than 0 and less than or equal to 15";
+        $("#years").focus();
+    }
+    if (errorMessage == "") {
+        $("#future_value").value = calculateFV(investment, rate, years);
+    } else {
+        alert(errorMessage);
+    }
 }
-while (again == "y");
+ */
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    $("#calculate").addEventListener("click", () => {
+        const investment = parseFloat($("#investment").value);
+        const rate = parseFloat($("#rate").value);
+        const years = parseInt($("#years").value);
+        let errorMessage = "";
 
-// display results
-document.write(html);
+        
+        if (isNaN(investment) || investment <= 0 || investment > 100000) {
+            errorMessage = "Investment must be a number greater than 0 and less than or equal to 100,000";
+            $("#investment ").focus();
+        } else if (isNaN(rate) || rate <= 0 || rate > 15) {
+            errorMessage = "Rate must be a number greater than 0 and less than or equal to 15";
+            $("#rate").focus();
+        } else if (isNaN(years) || years <= 0 || years > 50) {
+            errorMessage = "Years must be a number greater than 0 and less than or equal to 50";
+            $("#years").focus();
+        }
+        if (errorMessage == "") {
+            $("#future_value").value = calculateFV(investment, rate, years);
+        } else {
+            alert(errorMessage);
+        }
+    });
+    $("#investment").focus();
+});
