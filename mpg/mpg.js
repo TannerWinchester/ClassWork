@@ -2,8 +2,14 @@
 
 const $ = selector => document.querySelector(selector);
 
-const nonNumericError = lbl => `${lbl} entry is not a valid number.`;
-const rangeError = lbl => `${lbl} entry must be greater than 0.`;
+const isInvalidValue = val => { 
+    if (isNaN(val)) {
+        console.error("Value is not a number");
+    } else if (val <= 0) {
+        console.error(`Value ${val} is not greater than zero.`);
+    }
+    return isNaN(val) || val <= 0
+};
 
 const focusAndSelect = selector => {
     const elem = $(selector);
@@ -12,39 +18,39 @@ const focusAndSelect = selector => {
 };
 
 const processEntries = () => {
+    console.log("processEntries function has started");
+
+    // clear previous calculation
+    $("#mpg").value = "";
+
     const miles = parseFloat($("#miles").value);
     const gallons = parseFloat($("#gallons").value);
+    console.log("miles = " + miles);
+    console.log("gallons = " + gallons);
 
-    if (isNaN(miles)) {
-        alert(nonNumericError("Miles driven"));
-        focusAndSelect("#miles");
-    } else if (miles <=0) {
-        alert(rangeError("Miles driven"));
-        focusAndSelect("#miles");
+    let errorMessage = "";
+
+    if (isInvalidValue(miles)) {
+        errorMessage += "Miles driven must be a valid number greater than zero.\n";
+        focusAndSelect("#miles");        
     }
-    else if (isNaN(gallons)) {
-        alert(nonNumericError("Gallons of gas used"));
-        focusAndSelect("#gallons");
-    } else if (gallons <= 0) {
-        alert(rangeError("Gallons of gas used"));
+    
+    if (isInvalidValue(gallons)) {
+        errorMessage += "Gallons of gas used must be a valid number greater than zero.";
         focusAndSelect("#gallons");
     }
-    else {
-        $("#mpg").value = (miles / gallons).toFixed(2);
+    
+    if (errorMessage == "") {
+        console.log("The data is valid and the calculation is next");
+        const mpg = miles / gallons;
+        console.log("mpg = " + mpg);
+        $("#mpg").value = mpg.toFixed(2);
+    } else {
+        alert(errorMessage);
     }
-  
 };
-
-const clearEntries = () => {
-    $("#miles").value = "";
-    $("#gallons").value = "";
-    $("#mpg").value = "";
-    $("#miles").focus();
-}
 
 document.addEventListener("DOMContentLoaded", () => {
     $("#calculate").addEventListener("click", processEntries);
-    $("#clear").addEventListener("click", clearEntries);
-    $("#miles").addEventListener("dblclick", clearEntries);
     $("#miles").focus();
 });
