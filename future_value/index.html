@@ -10,30 +10,31 @@
     <main>
         <h1>The Future Value Calculator</h1>
         <div>
-            <label for="investment">Total Investment:</label>
+            <label for="investment">Investment amount:</label>
             <input type="text" id="investment">
+            <span>*</span>
         </div>
-            
         <div>
-            <label for="rate">Annual Interest Rate:</label>
+            <label for="rate">Interest rate:</label>
             <input type="text" id="rate">
+            <span>*</span>
         </div>
-            
         <div>
-            <label for="years">Number of Years:</label>
+            <label for="years">Years:</label>
             <input type="text" id="years">
+            <span>*</span>
         </div>
-
         <div>
-            <label for="future_vallue">Future Value:</label>
+            <label for="future_value">Future value:</label>
             <input type="text" id="future_value" disabled>
         </div>
-            
         <div>
             <label>&nbsp;</label>
-            <input type="button" id="calculate" value="Calculate Future Value">
-        </div>     
+            <input type="button" id="calculate" value="Calculate">
+            <input type="button" id="clear" value="Clear">
+        </div>
     </main>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="future_value.js"></script>
 </body>
 </html>
