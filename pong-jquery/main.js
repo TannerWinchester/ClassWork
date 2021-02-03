@@ -20,7 +20,7 @@ $restart.click(function() {
 function init () {
   aiPadel = {
     direction: 1,
-    SPEED: 1.5,
+    SPEED: 2.5,
     top: 0
   }
 
