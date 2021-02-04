@@ -1,57 +1,112 @@
-const $ = selector => document.querySelector(selector);
-
-document.addEventListener("DOMContentLoaded", () => {
-    
-    $("#join_list").addEventListener("click", () => {
-        // get values user entered in textboxes
-        const email1 = $("#email_1");
-        const email2 = $("#email_2");
-        const firstName = $("#first_name");
-    
-        // boolean variable for invalid entries
+"use strict";
+$(document).ready( () => {
+    // handle click on Join List button
+    $("#join_list").click( evt => {
         let isValid = true;
 
-        // check user entries - add text to error message if invalid
-        if (email1.value == "") {
-            email1.nextElementSibling.textContent = "This field is required.";
+        // validate the first email address
+        const emailPattern = 
+            /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b/;
+        const email1 = $("#email_1").val().trim();
+        if (email1 == "") { 
+            $("#email_1").next().text("This field is required.");
+            isValid = false;
+        } else if ( !emailPattern.test(email1) ) {
+            $("#email_1").next().text("Must be a valid email address.");
             isValid = false;
         } else {
-            email1.nextElementSibling.textContent = "";
+            $("#email_1").next().text("");
         }
+        $("#email_1").val(email1);
 
-        if (email2.value == "") {
-            email2.nextElementSibling.textContent = "This field is required."
+        // validate the second email address
+        const email2 = $("#email_2").val().trim();
+        if (email2 == "") { 
+            $("#email_2").next().text("This field is required.");
+            isValid = false; 
+        } else if (email1 != email2) { 
+            $("#email_2").next().text("The email addresses must match.");
             isValid = false;
         } else {
-            email2.nextElementSibling.textContent = "";
+            $("#email_2").next().text("");
         }
-
-        if (email1.value != email2.value) {
-            email2.nextElementSibling.textContent = "Email addresses must match.";
-            isValid = false;
-        }
-
-        if (firstName.value == "") {
-            firstName.nextElementSibling.textContent = "First name is required."
+        $("#email_2").val(email2);
+        
+        // validate the first name entry 
+        const firstName = $("#first_name").val().trim(); 
+        if (firstName == "") {
+            $("#first_name").next().text("This field is required.");
             isValid = false;
         } else {
-            firstName.nextElementSibling.textContent = "";
+            $("#first_name").next().text("");
+        }
+        $("#first_name").val(firstName);
+
+        // validate the last name entry
+        const lastName = $("#last_name").val().trim();
+        if (lastName == "") {
+            $("#last_name").next().text("This field is required.");
+            isValid = false;
+        } else {
+            $("#last_name").next().text("");
         }
 
-        //submit if all entries are valid.
-
-        if (isValid) {
-            $("#email_form").submit();
+        // validate the state entry
+		const state = $("#state").val().trim();
+		if (state == "") {
+			$("#state").next().text("This field is required.");
+			isValid = false;
+		} else if ( state.length != 2 ) {
+			$("#state").next().text("Use 2-character code.");
+			isValid = false;
+		} else {
+			$("#state").next().text("");
+		}
+		$("#state").val(state);
+			
+        // validate the zip-code entry
+        const zipCode = $("#zip_code").val().trim();
+        if (zipCode =="") {
+            $("#zip_code").next().text("This field is required.");
+            isValid = false;
+        } else if (zipcode.length != 5 ) { 
+            $("#zip_code").next().text("Use a 5-digit code.");
+        } else {
+            $("#zip_code").next().text("");
         }
+        $("#zip_code").val(zipCode);
+			
+        // validate the check boxes	
+        
+        let checkedOptions = [];
+        checkedOptions = $(":checkbox:checked");
+        if (checkedOptions.length == 0) {
+            $("#net").next().text("Select at least one.");
+            isValid = false;
+        } else {
+            $("#net").next().text("");
+        }
+						
+		// prevent the default action of submitting the form if any entries are invalid 
+		if (isValid == false) {
+			evt.preventDefault();
+		}
     });
 
-    $("#clear_form").addEventListener("click", () => {
-        $("#email_1").value = "";
-        $("#email_2").value = "";
-        $("#first_name").value = "";
+    // handle click on Reset Form button
+    $("#reset").click( () => {
+        // clear text boxes
+        $("#email_1").val("");
+        $("#email_2").val("");
+        $("#first_name").val("");
 
+        // reset span elements
+        $("#email_1").next().text("*");
+        $("#email_2").next().text("*");
+        $("#first_name").next().text("*");
+        
         $("#email_1").focus();
     });
-    
-    $("#email_1").focus();
+
+    $("#email_1").focus(); // move focus to first text box
 });
