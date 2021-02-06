@@ -20,7 +20,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>Instant Tech Repair</title>
+
+    <!-- JQuery Ui links -->
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
 
     <!-- My Style Sheet -->
     <link rel="stylesheet" href="css/styles.css">
@@ -53,7 +55,7 @@
 <!-- Header and Hero Image -->
 <header class="jumbotron-fluid hero">
   <div class="d-flex justify-content-center">
-    <div class="container welcome text-white text-center">
+    <div class="container welcome text-center">
         <h1 class="display-1">Instant Tech Repair</h1>
         <h5>We fix interior and exterior damage!</h5>
         <a href="#qoutes" role="button" class="btn btn-outline-secondary btn-lg bg-dark text-white">Individual Qoutes</a>
@@ -64,87 +66,82 @@
 <!-- Main Content Area -->
 <main class="container-fluid p-2">
   <!-- FAQ Bootstrap template -->
-<section id="faqSection">
-<div class="container-fluid faqs" id="faqs">
-  <h1 class="display-3 text-center font-weight-bold p-4">Instant Tech Repair FAQs</h1>
-  <div class="row">
-    <div class="col-md">
-      <h2><a href="#">How long does repairs take?</a></h2>
-      <div class="js-toggle">
-        <p> Repairs can take up to a week long, but usually only take 2-3 business days.
-        </p>
+  <section id="faqAccordion">
+    <h1 class="d-flex justify-content-center">FAQs</h1>
+      <div class="d-flex justify-content-center">
+        <div id="accordion">
+          <h3>How long do repairs take?</h3>
+        <div>
+            <p>Repairs can take up to a week long, but usually only take 2-3 business days.
+            </p>
+        </div>
+        <h3>Do you garuntee a fixed device?</h3>
+        <div>
+            <p>We garuntee that all pre-existing issues will be restored to factory standards.</p>
+        </div>
+        <h3>Will I lose any of my files off my device?</h3>
+        <div>
+            <p>No, Unless your device has issues with its memory and needs to be repaired.
+            </p>
+        </div>
+        <h3>Do the technicians have certification?</h3>
+        <div>
+            <p>Yes, all of our employees are certified technicians.
+            </p>
+        </div>
       </div>
-    </div>
-    <div class="col-md">
-      <h2><a href="#">What if there is issues after repairs?</a></h2>
-      <div class="js-toggle">
-        <p>We garuntee that all pre-existing issues will be restored to factory standards, if for some reason a defect is found we will compensate you by fixing the device for free!</p>
-      </div>
-    </div>
-    <div class="col-md">
-      <h2><a href="#">Do you sell any tech accessories?</a></h2>
-      <div class="js-toggle">
-        <p>Not yet! But soon we will.
-        </p>
-      </div>
-    </div>
-    <div class="col-md">
-      <h2><a href="#">Do the technicians have degrees?</a></h2>
-      <div class="js-toggle">
-        <p>Yes, all of our employees are certified technicians.
-        </p>
-      </div>
-    </div>
-    <div class="col-md">
-      <h2><a href="#">Will I lose any of my files off my device?</a></h2>
-      <div class="js-toggle">
-        <p>No, Unless your device has issues with its memory and needs to be repaired.</p>
-      </div>
-    </div>
-    <div class="col-md">
-      <h2><a href="#">Will my device lose warranty with my carrier?</a></h2>
-      <div class="js-toggle">
-        <p>Perhaps, depends on what your carriers terms of service are - although you still save money with us!
-        </p>
-      </div>
-    </div>
- </div>
-</div>
-</section>
-<!--  QOUTES SECTION -->
-
-<div class="container-fluid p-5 qoute">
-<section id="qoutes">
-  <div class="tablet-desktop">
-      <table class="table table-striped table-dark table-bordered table-hover text-center">
-        <h1 class="display-3 text-center p-4">Individual Repair Prices</h1>
-        <thead class="thead-dark">
-          <tr><!-- Row 1 -->
-            <th>Phones</th>
-            <th>Tablets</th>
-            <th>Laptops/Desktops</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><!-- Row 2 -->
-            <td>$100 external repair</td>
-            <td>$150 external repair</td>
-            <td>$200 external repair</td>
-          </tr>
-          <tr><!-- Row 3 -->
-            <td>$200 internal repair</td>
-            <td>$250 internal repair</td>
-            <td>$300 internal repair</td>
-          </tr>
-          <tr><!-- Row 4 -->
-            <td>$300 full repair</td>
-            <td>$400 full repair</td>
-            <td>$500 full repair</td>
-        </tbody>
-      </table>
     </div>
   </section>
+</section>
+<!--  QOUTES SECTION -->
+<div class="container-fluid p-5 qoute">
+
+<div class="qoutebox d-flex justify-content-center mobile">
+  <div class="cycle-slideshow mobile"
+      data-cycle-fx="fadeout"
+      data-cycle-timeout="4000"
+      data-cycle-caption="#adv-custom-caption"
+      data-cycle-caption-template="{{cycleTitle}}" >
+      <img src="images/cracked-phone.png" class="mobile" alt="" data-cycle-title="Before">
+      <img src="images/fixed_phone.png" class="mobile" alt="" data-cycle-title="After">
+      <!-- empty element for caption -->
+      <div id="adv-custom-caption"></div>
+  </div> 
 </div>
+
+
+
+  <section id="qoutes">
+    <div class="tablet-desktop">
+        <table class="table table-striped table-light table-bordered table-hover text-center">
+          <h1 class="display-3 text-center p-4">Individual Repair Prices</h1>
+          <thead class="thead-dark">
+            <tr><!-- Row 1 -->
+              <th>Phones</th>
+              <th>Tablets</th>
+              <th>Laptops/Desktops</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><!-- Row 2 -->
+              <td>$100 external repair</td>
+              <td>$150 external repair</td>
+              <td>$200 external repair</td>
+            </tr>
+            <tr><!-- Row 3 -->
+              <td>$200 internal repair</td>
+              <td>$250 internal repair</td>
+              <td>$300 internal repair</td>
+            </tr>
+            <tr><!-- Row 4 -->
+              <td>$300 full repair</td>
+              <td>$400 full repair</td>
+              <td>$500 full repair</td>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
 
 <!-- NewsLetter section -->
 <div class="container-fluid d-flex justify-content-around p-5 register">
@@ -173,7 +170,7 @@
         <div class="ml-5">
             <label>&nbsp;</label>
             <input type="button" id="join_list" value="Join List" class="ml-5">
-            <input type="button" id="clear_form" value="Clear Form" class="ml-5">
+            <input type="button" id="reset" value="Clear Form" class="ml-5">
         </div>     
         
     </form>
@@ -201,43 +198,45 @@
 
 <div id="form">
 
-    <h1 class="text-center">Complete the form below for further questions.</h1> 
+    <h2 class="text-center">Complete the form below for further questions.</h2> 
 
-    <form class="form-grid p-2 mt-3 bg-light" action="confirm.html" method="get"><!-- Start Form -->
+    <form class="form-grid p-2 mt-3">
 
-        <fieldset class="mb-2 form-group">
+        <fieldset class="mb-2 ">
             <legend>User Information</legend>
-            <label for="fName">First Name:</label><span class="error">*</span>
-            <input type="text" name="fName" id="fName" class="form-control" required>
+            <label for="fName">First Name:</label>
+            <input type="text" name="fName" id="fName" class="form-control">
+            <span class="error">*</span><br>
 
-            <label for="lName">Last Name:</label> <span class="error">*</span>
-            <input type="text" name="lName" id="lName" class="form-control" required>
-
-
-            <label for="email_address">Email:</label> <span class="error">*</span>
-            <input type="text" name="email_address" id="email_address" class="form-control" required>
+            <label for="lName">Last Name:</label>
+            <input type="text" name="lName" id="lName" class="form-control">
+            <span class="error">*</span><br>
 
 
-            <label for="phone">Phone:</label> <span class="error">*</span>
-            <input type="text" id="phone" name="phone" class="form-control" required>
+            <label for="email_address">Email:</label> 
+            <input type="text" name="email_address" id="email_address" class="form-control">
+            <span class="error">*</span><br>
+
+
+            <label for="phone">Phone:</label> 
+            <input type="text" id="phone" name="phone" class="form-control">
+            <span class="error">*</span><br>
         </fieldset>
 
         <fieldset class="mb-2 form-group">
                 <legend>Referral Source</legend>
-                <label for="reference">How did you find us?</label>
-                <select name="reference" id="reference" class="form-control">
-                    <option value="ad">Advertisement</option>
-                    <option value="friend">Friend</option>
-                    <option value="google">Google</option>
-                    <option value="social">Social Media</option>
-                    <option value="other">Other</option>
-                </select>
+                <label>How did you find us?</label><br>
+                <input type="checkbox" name="friend" id="friend" value="friend">Friend<br>
+                <input type="checkbox" name="ad" id="ad" value="ad">Ad<br>
+                <input type="checkbox" name="socialMedia" id="socialMedia" value="socialMedia">SocialMedia<br>
+                <input type="checkbox" name="other" id="other" value="other">Other
+                <span class="error">*</span><br>
 
-                <label for="questions">Comments?</label> <span class="error">*</span>
+                <label for="questions">Comments?</label>
                 <textarea id="comments" name="comments" rows="5" cols="35" class="form-control"></textarea>
         </fieldset>
 
-        <input type="submit" id="submit" value="Submit" class="btn  btn-lg bg-dark text-white mx-auto d-block">
+        <input type="submit" id="contact_list" value="Submit" class="btn  btn-lg bg-dark text-white mx-auto d-block">
         <input type="button" id="reset_form" value="Reset" class="btn btn-lg bg-dark text-white mx-auto d-block">
 
     </form>
@@ -258,9 +257,11 @@
   <a href="https://www.twitter.com" target="_blank"><img src="images/twitter-logo.png" alt="black and white Twitter logo"></a>
 </div>
 
-</footer>
-
-<script src="scripts/script.js"></script>
-
+</footer> 
+<script src="scripts/jquery.js"></script> 
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!--animation-->
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+<script src="https://malsup.github.com/jquery.cycle2.js"></script>
 </body>
 </html>
