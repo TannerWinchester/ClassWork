@@ -9,15 +9,19 @@ body {
 h1 {
     color: blue;
 }
+div {
+    margin-bottom: 1em;
+}
 label {
-    float: left;
-    width: 11em;
-    text-align: right;
+    display: inline-block;
+    width: 8em;
 }
 input {
-    margin-left: 1em;
-    margin-bottom: .5em;
+    margin-right: 1em;
 }
 span {
     color: red;
+}
+#score, #index {
+    width: 5em;
 }
