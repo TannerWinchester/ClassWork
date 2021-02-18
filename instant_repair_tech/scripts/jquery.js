@@ -1,3 +1,35 @@
+/*********************************************************************
+***
+*Original Author:  Tanner winchester                                  *
+*Date Created:      1/26                                 *
+*Version:                                                *
+*Date Last Modified:     2/15                         *
+*Modified by:    Tanner winchester                                      *
+*Modification log:        
+
+ 1/26 - Added in contact newsletter and email form with out JS to get a head start.
+
+ 1/27 - Removed contact, newsletter and email form to redo completely as it didnt work with JS.
+            Added in JS for newsletter and email forms and redesigned the page layout.
+            Added in FAQ and JS for the requirements.
+           ****Realized the the $ function was conflicting with the little jquery for the hero class and thats why ill have to either redo the hero class or use '$function' to workaround that conflict within the JS file.****
+
+ 1/29 - Tried to fix error in JS for the Contact section, although the console showed no errors
+           I could not get the code to function properly, it would not grab the value of the text 
+           area for the user input. I commented it out so the rest of the file would work properly.
+           Made sure everything else was up to par and met the requirements.
+
+	
+2/2 - Faqs redone with jquery and animations. 
+
+2/4 - Updated faqs with jquery UI, deleted vanilla JS and recoded the email newsletter with jquery.
+
+2/15 - 
+
+*
+***
+******************************************************************** */
+
 "use strict";
 
  
@@ -167,6 +199,6 @@ $(document).ready( () => {
 	});
 
 
-    
+
 }); // end ready
 

@@ -1,3 +1,21 @@
+<!-----------------------------------------------------------------------------------------------------------------
+--
+#Original Author:   Tanner Winchester                                    #
+#Date Created:     1/26                                    #
+#Version:                                                  #
+#Date Last Modified:    2/15                            #
+#Modified by:        Tanner Winchester                                  #
+#Modification log:      
+
+1/26 - Created project, added all sections and essentials to the index page
+
+1/28 - added contact page, made edits to the qoutes section, darkened table, added more FAQs 
+and made all H1 tags bigger. 
+
+2/15 - added favicon to webpage and over the past week have contantly made minor changes to classes and id tags within the html document. Moved modlog.html to its appropriate files in index, css, and js files as instructed. 
+
+ --
+------------------------------------------------------------------------------------------------------------------>
 <!doctype html>
 <html lang="en">
   <head>
@@ -6,6 +24,10 @@
     <meta name="keywords" content="Repairs, tech, devices.">
     <meta name="author" content="Tanner Winchester">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon-16x16.png" sizes="16x16">
 
 
     <!-- Fonts -->
@@ -40,10 +62,10 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="#home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#faqSection">FAQs</a>
+            <a class="nav-link" href="#faqAccordion">FAQs</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#contact">Contact Us</a>
@@ -53,7 +75,7 @@
 
     </nav>
 <!-- Header and Hero Image -->
-<header class="jumbotron-fluid hero">
+<header class="jumbotron-fluid hero" id="home">
   <div class="d-flex justify-content-center">
     <div class="container welcome text-center">
         <h1 class="display-1">Instant Tech Repair</h1>
@@ -67,21 +89,22 @@
 <main class="container-fluid p-2">
   <!-- FAQ Bootstrap template -->
   <section id="faqAccordion">
-    <h1 class="d-flex justify-content-center">FAQs</h1>
+    <h1 class="d-flex justify-content-center">FAQ's</h1>
       <div class="d-flex justify-content-center">
         <div id="accordion">
           <h3>How long do repairs take?</h3>
         <div>
-            <p>Repairs can take up to a week long, but usually only take 2-3 business days.
+            <p>Repairs take 3-5 business days.
             </p>
         </div>
         <h3>Do you garuntee a fixed device?</h3>
         <div>
-            <p>We garuntee that all pre-existing issues will be restored to factory standards.</p>
+            <p>Yes! Factory standards will be met.
+            </p>
         </div>
         <h3>Will I lose any of my files off my device?</h3>
         <div>
-            <p>No, Unless your device has issues with its memory and needs to be repaired.
+            <p>Our work will not cause memory damage.
             </p>
         </div>
         <h3>Do the technicians have certification?</h3>
@@ -96,7 +119,7 @@
 <!--  QOUTES SECTION -->
 <div class="container-fluid p-5 qoute">
 
-<div class="qoutebox d-flex justify-content-center mobile">
+<div class="d-flex justify-content-center qoutebox">
   <div class="cycle-slideshow mobile"
       data-cycle-fx="fadeout"
       data-cycle-timeout="4000"
@@ -105,7 +128,7 @@
       <img src="images/cracked-phone.png" class="mobile" alt="" data-cycle-title="Before">
       <img src="images/fixed_phone.png" class="mobile" alt="" data-cycle-title="After">
       <!-- empty element for caption -->
-      <div id="adv-custom-caption"></div>
+      <div id="adv-custom-caption mobile"></div>
   </div> 
 </div>
 
@@ -149,28 +172,28 @@
     <form id="email_form" name="email_form" 
           action="join.html" method="get">
           <h1 class="display-3 p-3">Join our NewsLetter</h1>
-        <div class="ml-5">
+        <div class="joinButton">
             <label for="email_1">Email Address:</label>
             <input type="text" id="email_1" name="email_1">
             <span class="error">*</span>
         </div>
         
-        <div class="ml-5">
+        <div class="joinButton">
             <label for="email_2">Confirm Email:</label>
             <input type="text" id="email_2" name="email_2">
             <span class="error">*</span>
         </div>
         
-        <div class="ml-5">
+        <div class="joinButton">
             <label for="first_name" class="ml-4">Full Name :</label>
             <input type="text" id="first_name" name="first_name">
             <span class="error">*</span>
         </div>
         
-        <div class="ml-5">
+        <div>
             <label>&nbsp;</label>
-            <input type="button" id="join_list" value="Join List" class="ml-5">
-            <input type="button" id="reset" value="Clear Form" class="ml-5">
+            <input type="button" id="join_list" value="Join List" class="joinButton">
+            <input type="button" id="reset" value="Clear Form" class="joinButton">
         </div>     
         
     </form>
@@ -187,7 +210,6 @@
 
     <h1 class="display-4 pt-3">Need a device fixed?<br> Contact us today.</h1> 					
     <h4 class="mobile mb-3"><a href="tel:8145559608" role="button" class="btn btn-outline-secondary btn-lg bg-dark text-white">(814) 555-9608</a></h4>
-    <h4 class="tablet-desktop tel-num mb-3">(122) 255-4565</h4>
     <h4>Email us: <a href="mailto:InstantTechRepair@gmail.com" class="contact-email-link">InstantTechRepair@gmail.com</a></h4>
     <h4>Visit us at: 1275 main, Boise, Idaho.</h4>
 
@@ -203,7 +225,7 @@
     <form class="form-grid p-2 mt-3">
 
         <fieldset class="mb-2 ">
-            <legend>User Information</legend>
+            <legend>User Information:</legend>
             <label for="fName">First Name:</label>
             <input type="text" name="fName" id="fName" class="form-control">
             <span class="error">*</span><br>
