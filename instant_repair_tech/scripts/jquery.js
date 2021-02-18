@@ -106,7 +106,7 @@ $(document).ready( () => {
 		$("#email_1").focus();
 
 	});
-	$("#email_1").focus();
+
 
 
 
