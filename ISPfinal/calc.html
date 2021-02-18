@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Qoute Calculator</title>
+    <link rel="stylesheet" href="css/calc.css">
+</head>
+<body>
+    <main>
+        <div class="wrapper">
+        <h1>Instant Tech Repair</h1>
+        <h3>Bundle your devices and get 50% off!</h3>
+        <script>
+            "use strict";
+            
+            // get phones
+            let phones = parseInt(prompt("How many phone devices?"));
+            phones = (100 * phones);
+
+
+            // get tablets
+            let tablets = parseInt(prompt("How many tablet devices?"));
+            tablets = (150 * tablets);
+
+
+            // get PC/Desktop amount
+            let desktops = parseInt(prompt("How many desktops?"));
+            desktops = (200 * desktops);
+
+            //calc cost
+            const cost = (phones + tablets + desktops);
+
+            const discount = (.50);
+
+            const total = (cost * discount);
+
+            // display results
+            const html = "<p>Phone costs = $" + phones + "</p>" +
+                "<p>Tablet costs = $" + tablets + "</p>" +
+                "<p>Desktop costs = $" + desktops + "</p>" +
+                "<p>Bundle Discount = 50%" +
+                "<p>Total Cost = $" + total + " </p>";
+            document.write(html);
+        </script>    
+        </div>
+    </main>
+</body>
+</html>
