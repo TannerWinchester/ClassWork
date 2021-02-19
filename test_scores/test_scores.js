@@ -1,39 +1,47 @@
 "use strict";
+function isInvalid(score) {
+    return isNaN(score) || score < 1 || score > 100;
+}
+
+function getAverage(arr, places = 2) {
+    const total = arr.reduce( (tot, val) => tot + val, 0 );
+    const average = total/arr.length;
+    return average.toFixed(places);
+};
+
+function getLast(arr, num = 3) {
+    const copy = [...arr];
+    copy.reverse();
+    return copy.slice(0, num);
+}
 
 $(document).ready( () => {
+
+    const scores = [];
 
     $("#add_score").click( () => {
         
         const score = parseFloat($("#score").val());
-
-        if (isNaN(score) || score < 0 || score > 100) {
-            $("#add_score").next().text("Score must be between 0 and 100."); 
+                
+        if (isInvalid(score)) { 
+            $("#add_score").next().text("Score must be between 1 and 100.");
         }
-        else {
-            $("#add_score").next().text("");  
+        else {  
+            $("#add_score").next().text(""); 
 
-            // add score to scores array 
-            testScores.add(score);
+            scores.push(score);
 
-            // display all scores
-            $("#all").text(testScores.toString());
-
-            // display average score
-            $("#avg").text(testScores.avg.toFixed(1));
-
-            // display last 3 scores
-            $("#last").text(testScores.lastThree);
+            $("#high").text(Math.max(...scores));
+            $("#low").text(Math.min(...scores));
+            $("#last").text(getLast(scores).join(", "));
+            $("#avg").text(getAverage(scores, 1));
+            $("#all").text(scores.join(", "));
         }
+        
 
-        // get text box ready for next entry
         $("#score").val("");
         $("#score").focus(); 
-
-        for (const score of testScores) {
-            console.log(score);
-        }
     });
 
-    // set focus on initial load
     $("#score").focus();
 });
