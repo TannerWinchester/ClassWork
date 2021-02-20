@@ -1,0 +1,45 @@
+/* Style rules for hero image and header */
+
+html {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+      url(../images/background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+
+
+h1, h3 {
+    color: rgb(5, 5, 5);
+    text-align: center;
+}
+div {
+    margin-bottom: 1em;
+}
+label {
+    display: inline-block;
+    width: 10em;
+    font-weight: bold;
+}
+input {
+    margin-right: 0.5em;
+}
+span {
+    color: red;
+}
+#tasks {
+    float: right; 
+    width: 23em;
+    margin: 0 0 .5em;
+    margin-right: 430px;
+    padding: 1em;
+    border: 2px solid black;
+    min-height: 5em;
+}
+#tasks a { 
+    margin-right: 0.5em; 
+}
+.clear { 
+    clear: both; 
+}
