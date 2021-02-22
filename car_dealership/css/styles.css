@@ -1,0 +1,44 @@
+
+
+
+
+  /************** Basic styling *******************/
+.hero {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+  url(../images/background.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+  
+header {
+  font-family: "Acme", sans-serif;
+}
+
+footer {
+  font-family: "Acme", sans-serif;
+}
+
+footer a {
+  color: black;
+}
+
+  
+main {
+  font-family: "Acme", sans-serif;
+}
+  
+.navbar-brand,
+.navbar-nav a {
+  font-family: "Acme", sans-serif;
+}
+
+.navbackground {
+  background: rgb(248,210,163);
+}
+
+.footerbackground {
+  background: rgb(248,210,163);
+}
+  
+  
