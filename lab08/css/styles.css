@@ -1,0 +1,106 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#home {
+    font-family: 'Nanum Gothic Coding', monospace;
+    color: rgb(184,190,66);
+}
+
+body{
+    font-family: 'Nanum Gothic Coding', monospace;
+}
+
+
+nav {
+    font-weight: bold;
+    font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.navbar {
+    background-color: rgb(184,190,66);
+}
+
+.nav-link {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: black;
+    background-color: rgb(114,35,36);
+    transition: 0.5s;
+}
+
+.navbar-brand {
+    font-size: 1.50rem;
+    font-weight: 800;
+    color: black;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.navbar-brand:hover {
+ color: black;
+ background-color: rgb(114,35,36);
+ transition: 0.5s;
+}
+
+/** Main section **/
+
+.main {
+    background:  linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../images/main.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    color: white;
+}
+.main .bt1{
+    height: 55px;
+    width: 138px;
+    background-color: rgb(184,190,66);
+    color: black;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.main .bt1:hover {
+    background-color: rgb(114,35,36); 
+    color: white;
+    transition: 0.1s;
+}
+
+#about {
+    color: rgb(184,190,66);
+}
+
+.bg-about {
+    background-color: rgba(114, 35, 36, 0.904);
+}
+
+.about img{
+    -webkit-box-shadow: 7px 1px 7px 4px rgba(0,0,0,0.79); 
+box-shadow: 7px 1px 7px 4px rgba(0,0,0,0.79);
+}
+
+#guides {
+    color: rgb(184,190,66);
+}
+
+.bg-guides {
+background-color: rgba(114, 35, 36, 0.877);
+}
+
+footer {
+    background-color: rgb(184,190,66);
+    color: rgb(114,35,36);
+    font-weight: bold;
+}
