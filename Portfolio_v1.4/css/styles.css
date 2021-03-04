@@ -1,0 +1,387 @@
+/*********************************************************************
+***
+*Original Author:     Tanner winchester                               *
+*Date Created:   2/23/2021                                    *
+*Version:                                                *
+*Date Last Modified:     2/24/2021                         *
+*Modified by:       Tanner winchester                                   *
+*Modification log:         
+
+
+2/23 - Styles sheet initialized || all sections styled, and components styled. || added Keyframes to progress bar|| added a general font to the entire body. || 
+
+2/24 - Made modifications to contact form  || added AOS animations 
+
+
+
+
+
+***
+******************************************************************** */
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.subtext {
+    color: lightpink;
+}
+
+nav {
+    font-weight: bold;
+}
+
+.navbar {
+    background-color: white;
+}
+
+.nav-link {
+    color: rgb(7, 203, 238);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: black;
+    background-color: rgb(7, 203, 238);
+    transition: 0.5s;
+}
+
+.navbar-brand {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: black;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.navbar-brand:hover {
+ color: black;
+ background-color: rgb(7, 203, 238);
+ transition: 0.5s;
+}
+
+/** Main section **/
+
+.main {
+    background:  linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../images/main.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    color: white;
+}
+
+.main h3 {
+    font-size: 4.4rem;
+    font-weight: 700;
+}
+
+.main h6 {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    line-height: 1;
+    border-bottom: 3px solid white;
+    width: 9rem;
+}
+
+.main .bt1{
+    height: 55px;
+    width: 138px;
+    background-color: white;
+    color: black;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.main .bt1:hover {
+    background-color: rgb(7, 203, 238); 
+    color: white;
+    transition: 0.1s;
+}
+
+.main .bt2:hover {
+    background-color: white; 
+    color: black;
+    transition: 0.1s;
+}
+
+.main .bt2{
+    height: 55px;
+    width: 138px;
+    background-color: rgb(7, 203, 238);
+    color: white;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+
+/** About section **/
+
+.about img{
+    -webkit-box-shadow: 7px 1px 7px 4px rgba(0,0,0,0.79); 
+box-shadow: 7px 1px 7px 4px rgba(0,0,0,0.79);
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    padding: 10px;
+    padding-top: 15px;
+}
+
+.progress {
+    background-color: rgb(223, 219, 219);
+    justify-content: flex-start;
+    border-radius: 50px;
+    align-items: center;
+    position: relative;
+    display: flex;
+    height: 25px;
+    width: 100%;
+
+
+    -webkit-box-shadow: inset 1px -13px 15px -3px rgba(0,0,0,0.49); 
+    box-shadow: inset 1px -13px 15px -3px rgba(0,0,0,0.49);
+}
+
+.progress p {
+    color: white;
+    padding: 2px;
+    padding-left: 10px;
+}
+
+.pro-value1 {
+    animation: load1 3s normal forwards;
+    animation-delay: 1s;
+    border-radius: 50px;
+    background-color: black;
+    height: 25px;
+    width: 0;
+}
+
+.pro-value2 {
+    animation: load2 3s normal forwards;
+    animation-delay: 1s;
+    border-radius: 50px;
+    background-color: black;
+    height: 25px;
+    width: 0;
+}
+
+.pro-value3 {
+    animation: load3 3s normal forwards;
+    animation-delay: 1s;
+    border-radius: 50px;
+    background-color: black;
+    height: 25px;
+    width: 0;
+}
+
+.pro-value4 {
+    animation: load4 3s normal forwards;
+    animation-delay: 1s;
+    border-radius: 50px;
+    background-color: black;
+    height: 25px;
+    width: 0;
+}
+
+
+@keyframes load1 {
+    0% {
+        width: 0;
+    }
+    100%{
+        width: 80%;
+    }
+}
+
+@keyframes load2 {
+    0% {
+        width: 0;
+    }
+    100%{
+        width: 50%;
+    }
+}
+
+@keyframes load3 {
+    0% {
+        width: 0;
+    }
+    100%{
+        width: 20%;
+    }
+}
+
+@keyframes load4 {
+    0% {
+        width: 0;
+    }
+    100%{
+        width: 60%;
+    }
+}
+
+
+.btn1 {
+    height: 40px;
+    width: 145px;
+    outline: none;
+    border: none; background-color: black;
+    color: white;
+    border-radius: 4px;
+}
+.btn1:hover {
+    background-color: rgb(7, 203, 238);
+    border: 1px solid black;
+    transition: 0.3s;
+}
+.btn2 {
+    height: 40px;
+    width: 145px;
+    outline: none;
+    border: 1px solid black; background-color: transparent;
+    color: black;
+    border-radius: 4px;
+}
+.btn2:hover {
+    background-color: rgb(7, 203, 238);
+    color: white;
+    transition: 0.3s;
+}
+
+
+/** SERVICES **/
+
+.card {
+    border: none;
+    outline: none;
+
+    -webkit-box-shadow: 6px 9px 25px 5px rgba(0,0,0,0.57); 
+    box-shadow: 6px 9px 25px 5px rgba(0,0,0,0.57);
+}
+
+.card p {
+    color: gray;
+}
+
+.circle {
+    height: 70px;
+    width: 70px;
+    background-color: rgb(235, 232, 232);
+    color: black;
+    padding: 12px;
+    font-size: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.card:hover .circle {
+    background-color: rgb(7, 203, 238);
+    color: white;
+    transition: 0.3s;
+}
+
+/** EXAMPLES section **/
+
+.control ul li {
+    list-style: none;
+    background-color: black;
+    padding: 5px 15px;
+    color: white;
+    display: inline-block;
+    cursor: pointer;
+    letter-spacing: 2px;
+}
+
+.control ul li:hover {
+    background-color: rgb(7, 203, 238);
+    color: black;
+    transition: 0.1s;
+}
+
+.item {
+    position: relative;
+}
+
+.item:hover {
+    -webkit-box-shadow: 6px -5px 25px 1px #000000; 
+    box-shadow: 6px -5px 25px 1px #000000;
+        transition: 0.5s;
+}
+
+.item span{
+    position: absolute;
+    top: 40%;
+    left: 45%;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    opacity: 0;
+}
+.item:hover span{
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.item:before {
+    content: "";
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(238, 235, 230, 0.268);
+    opacity: 0;
+    position: absolute;
+}
+
+.item:hover:before {
+    opacity: 1;
+    transition: 0.3s;
+}
+
+
+/** CONTACT STYLING **/
+
+.circle:hover {
+    background-color: rgb(7, 203, 238);
+    transition: 0.5s;
+    color: white;
+    cursor: pointer;
+}
+
+.contact .btn3 {
+    background-color: black;
+    color: white;
+    outline: none;
+    border: none;
+    height: 40px;
+    width: 140px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btn3:hover {
+    background: rgb(7, 203, 238);
+    transition: 0.2s;
+}
+
+
+footer{
+    background-color: rgb(7, 203, 238);
+    color: white;
+}
