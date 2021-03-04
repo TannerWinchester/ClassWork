@@ -1,0 +1,254 @@
+/*********************************************************************
+***
+*Original Author:     Tanner winchester                               *
+*Date Created:   3/1/2021                                    *
+*Version:                                                *
+*Date Last Modified:     3/2/2021                         *
+*Modified by:       Tanner winchester                                   *
+*Modification log:         
+
+
+3/1- Styled all components to the index page || pulled in google fonts || added box shadows to elements || created color scheme for website ||
+
+3/2 - Styled shop section. changed up the color pattern on shop cards ||
+
+3/3 - added css wand effects to main buttons and home page button || changed main image ||
+
+
+
+
+
+***
+******************************************************************** */
+
+#home {
+  font-family: "ZCOOL QingKe HuangYou", cursive;
+  color: rgb(79, 214, 255);
+}
+
+body {
+  font-family: "ZCOOL QingKe HuangYou", cursive;
+}
+
+nav {
+  font-weight: bold;
+  font-family: "ZCOOL QingKe HuangYou", cursive;
+}
+
+.navbar {
+  background-color: whitesmoke;
+}
+
+.nav-link {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: black;
+  background-color: rgb(79, 214, 255);
+  transition: 0.5s;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: black;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.navbar-brand:hover {
+  color: black;
+  background-color: rgb(79, 214, 255);
+  transition: 0.5s;
+}
+
+/** Main section **/
+
+.main {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url(../images/main1.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  color: white;
+}
+
+.main h1 {
+  color: rgb(12, 55, 199);
+}
+
+.main .bt1 {
+  height: 55px;
+  width: 138px;
+  background-color: rgb(12, 55, 199);
+  color: white;
+  outline: none;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.main .bt1:hover {
+  background-color: rgb(79, 214, 255);
+  color: black;
+  animation: swing 1s ease;
+  animation-iteration-count: 1;
+}
+@keyframes swing {
+  15% {
+    transform: translateX(5px);
+  }
+  30% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  65% {
+    transform: translateX(-3px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* about */
+
+.about img {
+  -webkit-box-shadow: 7px 1px 7px 4px rgba(0, 0, 0, 0.79);
+  box-shadow: 7px 1px 7px 4px rgba(0, 0, 0, 0.79);
+}
+
+.btn1 {
+  height: 40px;
+  width: 145px;
+  outline: none;
+  border: none;
+  background-color: rgb(12, 55, 199);
+  color: white;
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
+}
+.btn1:hover {
+  background-color: rgb(79, 214, 255);
+  color: black;
+
+  /* css wand shadow */
+  box-shadow: 1px 1px #53a7ea, 2px 2px #53a7ea, 3px 3px #53a7ea;
+  transform: translateX(-3px);
+}
+
+/* Services */
+
+.card {
+  border: none;
+  outline: none;
+  background-color: rgb(12, 55, 199);
+  cursor: pointer;
+
+  -webkit-box-shadow: 6px 9px 25px 5px rgba(0, 0, 0, 0.57);
+  box-shadow: 6px 9px 25px 5px rgba(0, 0, 0, 0.57);
+}
+
+.card p {
+  color: white;
+}
+
+.circle {
+  height: 70px;
+  width: 70px;
+  background-color: black;
+  color: white;
+  padding: 12px;
+  font-size: 30px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.card:hover .circle {
+  background-color: rgb(79, 214, 255);
+  color: black;
+  transition: 0.3s;
+}
+
+h4 {
+  color: rgb(79, 214, 255);
+}
+
+/* Contact */
+
+.contact .circle {
+  background-color: rgb(12, 55, 199);
+}
+
+.contact a {
+  color: black;
+}
+
+.contact a:hover {
+  color: white;
+  transition: 0.3s;
+}
+
+.contact .btn3 {
+  background-color: rgb(12, 55, 199);
+  color: white;
+  outline: none;
+  border: none;
+  height: 40px;
+  width: 140px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.btn3:hover {
+  background: rgb(79, 214, 255);
+  color: black;
+
+  /* css wand shadow */
+  box-shadow: 1px 1px #53a7ea, 2px 2px #53a7ea, 3px 3px #53a7ea;
+  transform: translateX(-3px);
+}
+
+/* Shop */
+
+.shop .card {
+  border: none;
+  outline: none;
+  background-color: rgb(79, 214, 255);
+  cursor: pointer;
+
+  -webkit-box-shadow: 6px 9px 25px 5px rgba(0, 0, 0, 0.57);
+  box-shadow: 6px 9px 25px 5px rgba(0, 0, 0, 0.57);
+}
+
+.shop .card p {
+  color: black;
+}
+
+.carousel {
+  -webkit-box-shadow: 6px 9px 25px 5px rgba(0, 0, 0, 0.57);
+  box-shadow: 6px 9px 25px 5px rgba(0, 0, 0, 0.57);
+}
+
+.shop .list-group {
+  -webkit-box-shadow: 6px 9px 25px 5px rgba(0, 0, 0, 0.57);
+  box-shadow: 6px 9px 25px 5px rgba(0, 0, 0, 0.57);
+}
+
+footer {
+  background-color: rgb(12, 55, 199);
+  color: white;
+  font-weight: bold;
+}
