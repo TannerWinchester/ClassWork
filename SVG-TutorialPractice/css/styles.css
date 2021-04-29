@@ -1,8 +1,0 @@
-svg:hover .myshape {
-    fill: red;
-    transform: scale(1.1);
-}
-.myshape {
-    transition: all 1.3s;
-
-}
