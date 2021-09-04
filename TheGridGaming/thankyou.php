@@ -1,3 +1,67 @@
+<?php
+    
+    $fname = filter_input(INPUT_POST, 'fname');
+    $lname = filter_input(INPUT_POST, 'lname');
+    $phone = filter_input(INPUT_POST, 'phone');
+    $esports = isset($_POST['esports']);
+    $hyper = isset($_POST['hyper']);
+    $arcade = isset($_POST['arcade']);
+    $members = isset($_POST['members']);
+    $email = filter_input(INPUT_POST, 'email');
+    $comments = filter_input(INPUT_POST, 'comments');
+    $reference = filter_input(INPUT_POST, 'reference');
+    
+    /* echo "Fields: " . $visitor_name . $visitor_email . $visitor_msg;  */
+    
+    // Validate inputs
+    if ($fname == null || $lname == null || 
+            $email == null || $comments == null) {
+        $error = "Invalid input data. Check all fields and try again.";
+        /* include('error.php'); */
+        $error = "Invalid input data. Check all fields and try again.";
+        /* include('error.php'); */
+        echo "Form Data Error: " . $error; 
+        exit();
+        } else {
+            $dsn = 'mysql:host=localhost;dbname=thegrid';
+            $username = 'grid_user';   //'grid_user';
+            $password = 'Pa$$w0rd';
+
+            try {
+                $db = new PDO($dsn, $username, $password);
+
+            } catch (PDOException $e) {
+                $error_message = $e->getMessage();
+                /* include('database_error.php'); */
+                echo "DB Error: " . $error_message; 
+                exit();
+            }
+
+            // Add the product to the database  
+            $query = 'INSERT INTO contactMSG
+	(first_name, last_name, email_address, phone_num, referral_src, is_sports, is_reality, is_member, is_arcade, question, employee_id)
+            VALUES
+                (:fname, :lname, :email, :phone, :reference, :esports, :hyper, :members, :arcade, :comments, 1)';
+            $statement = $db->prepare($query);
+            $statement->bindValue(':fname', $fname);
+            $statement->bindValue(':lname', $lname);
+            $statement->bindValue(':email', $email);
+            $statement->bindValue(':phone', $phone);
+            $statement->bindValue(':reference', $reference);
+            $statement->bindValue(':esports', $esports);
+            $statement->bindValue(':hyper', $hyper);
+            $statement->bindValue(':arcade', $arcade);
+            $statement->bindValue(':members', $members);
+            $statement->bindValue(':comments', $comments);
+            $statement->execute();
+            $statement->closeCursor();
+            
+             echo "Fields: " . $fname . $lname . $email . $phone . $reference .  $esports. $hyper . $arcade . $members . $comments;
+
+}
+
+?>
+
 <!doctype html>
 <!-- Student Name: Tanner Winchester -->
 
@@ -36,10 +100,10 @@
   <body>
    
     <!-- Bootstrap Navigation bar -->
-    <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark-maroon">
+<!--    <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark-maroon">
         <a class="navbar-brand" href="index.html">The Grid Gaming Club</a>
   
-        <!-- Hamburger menu icon -->
+         Hamburger menu icon 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="nabvarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -60,90 +124,18 @@
           </ul>
         </div>
   
-      </nav>
+      </nav>-->
     <!-- Main Content Area -->
     <main class="container mt-5">
 		
         <div class="text-center">
+            <br><br>
 
-            <h2 class="display-4 pt-3">Ready to become a member?<br> Contact us today.</h2> 					
-            <h4 class="mobile mb-3"><a href="tel:8145559608" role="button" class="btn btn-outline-secondary btn-lg bg-dark text-white">(814) 555-9608</a></h4>
-            <h4 class="tablet-desktop tel-num mb-3">(122) 255-4565</h4>
-            <h4>Email us: <a href="mailto:TheGridGaming@gmail.com" class="contact-email-link">TheGridGaming@gmail.com</a></h4>
-            <h4>Visit us at: 1275 main, Boise, Idaho.</h4>
-
-            <iframe src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=boise%20idaho%20united%20states+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="600" height="450" allowfullscreen class="map"></iframe>
+            <h2 class="display-4 pt-3">Thank you.</h2> 					
 
 
         </div>
-
-        <div id="form">
-
-            <h2 class="text-center">Complete the form below to become a member.</h2> 
-
-            <form class="form-grid p-2 mt-3 bg-light" action="thankyou.php" method="post"><!-- Start Form -->
-
-                <fieldset class="mb-2 form-group">
-                    <legend>Member Information</legend>
-                    <label for="fName">First Name:</label>
-                    <input type="text" name="fname" id="fname" class="form-control" required>
-
-                    <label for="lName">Last Name:</label>
-                    <input type="text" name="lname" id="lname" class="form-control" required> 
-
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" id="email" class="form-control" required>
-
-                    <label for="phone">Phone:</label>
-                    <input type="tel" id="phone" name="phone" class="form-control" required>
-                </fieldset>
-
-                <fieldset class="mb-2 ml-2 form-group">
-                    <legend>Additional Information</legend>
-                    <p>I would like more information about:</p>
-
-                    <div class="form-check form-check-inline">
-                        <input type="checkbox" name="esports" class="form-check-input">
-                        <label for="trial" class="form-check-label">E-Sports Team</label>
-                    </div>
-                       
-                    <div class="form-check form-check-inline">
-                        <input type="checkbox" name="hyper" class="form-check-input">
-                        <label for="grpfit" class="form-check-label">Hyper-Reality</label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input type="checkbox" name="members" class="form-check-input">
-                        <label for="prtrain" class="form-check-label">Members exclusive access</label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input type="checkbox" name="arcade" class="form-check-input">
-                        <label for="nutr" class="form-check-label">Arcade Games</label>
-                    </div>
-                </fieldset>
-
-                <fieldset class="mb-2 form-group">
-                        <legend>Referral Source</legend>
-                        <label for="reference">How did you find us?</label>
-                        <select name="reference" id="reference" class="form-control">
-                            <option value="ad">Advertisement</option>
-                            <option value="friend">Friend</option>
-                            <option value="google">Google</option>
-                            <option value="social">Social Media</option>
-                            <option value="other">Other</option>
-                        </select>
-
-                        <label for="comments">Questions?</label>
-                        <textarea id="comments" name="comments" rows="5" cols="35" class="form-control"></textarea>
-                </fieldset>
-
-                <input type="submit" id="submit" value="Submit" class="btn  btn-lg bg-dark text-white mx-auto d-block">
-
-            </form>
-
-        </div>
-			
+	
     </main>
          
     <!-- Footer -->
