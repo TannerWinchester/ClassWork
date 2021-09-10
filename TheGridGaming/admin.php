@@ -1,86 +1,60 @@
 <?php
-    
-    $fname = filter_input(INPUT_POST, 'fname');
-    $lname = filter_input(INPUT_POST, 'lname');
-    $phone = filter_input(INPUT_POST, 'phone');
-    $esports = isset($_POST['esports']);
-    if (is_null($esports)) {
-        $esports = 0;
-        
-    } else {
-        $esports = 1;
-    }
-    $hyper = isset($_POST['hyper']);
-    if (is_null($hyper)) {
-        $hyper = 0;
-    } else {
-        $hyper = 1;
-    }
-    $arcade = isset($_POST['arcade']);
-    if (is_null($arcade)) {
-        $arcade = 0;
-    } else {
-        $arcade = 1;
-    }
-    $members = isset($_POST['members']);
-    if (is_null($members)) {
-        $members = 0;
-    } else {
-        $members = 1;
-    }
-    $email = filter_input(INPUT_POST, 'email');
-    $comments = filter_input(INPUT_POST, 'comments');
-    $reference = filter_input(INPUT_POST, 'reference');
-    
-    /* echo "Fields: " . $visitor_name . $visitor_email . $visitor_msg;  */
-    
-    // Validate inputs
-    if ($fname == null || $lname == null || 
-            $email == null || $comments == null) {
-        $error = "Invalid input data. Check all fields and try again.";
-        /* include('error.php'); */
-        $error = "Invalid input data. Check all fields and try again.";
-        /* include('error.php'); */
-        echo "Form Data Error: " . $error; 
-        exit();
-        } else {
-            $dsn = 'mysql:host=localhost;dbname=thegrid';
-            $username = 'grid_user';   //'grid_user';
-            $password = 'Pa$$w0rd';
+$dsn = 'mysql:host=localhost;dbname=thegrid';
+        $username = 'grid_user';   //'grid_user';
+        $password = 'Pa$$w0rd';
 
-            try {
-                $db = new PDO($dsn, $username, $password);
-
-            } catch (PDOException $e) {
-                $error_message = $e->getMessage();
-                /* include('database_error.php'); */
-                echo "DB Error: " . $error_message; 
-                exit();
-            }
-
-            // Add the product to the database  
-            $query = 'INSERT INTO contactMSG
-	(first_name, last_name, email_address, phone_num, referral_src, is_sports, is_reality, is_member, is_arcade, question, employee_id)
-            VALUES
-                (:fname, :lname, :email, :phone, :reference, :esports, :hyper, :members, :arcade, :comments, 1)';
-            $statement = $db->prepare($query);
-            $statement->bindValue(':fname', $fname);
-            $statement->bindValue(':lname', $lname);
-            $statement->bindValue(':email', $email);
-            $statement->bindValue(':phone', $phone);
-            $statement->bindValue(':reference', $reference);
-            $statement->bindValue(':esports', $esports);
-            $statement->bindValue(':hyper', $hyper);
-            $statement->bindValue(':arcade', $arcade);
-            $statement->bindValue(':members', $members);
-            $statement->bindValue(':comments', $comments);
-            $statement->execute();
-            $statement->closeCursor();
-            
-//             echo "Fields: " . $fname . $lname . $email . $phone . $reference .  $esports. $hyper . $arcade . $members . $comments;
-
+try {
+    $db = new PDO($dsn, $username, $password);
+} catch (PDOException $e) {
+    $error_message = $e->getMessage();
+    /* include('database_error.php'); */
+    echo "DB Error: " . $error_message;
+    exit();
 }
 
+//check action; on initial load it is null
+$action = filter_input(INPUT_POST, 'action');
+if ($action == NULL) {
+    $action = filter_input(INPUT_GET, 'action');
+    if ($action == NULL) {
+        $action = 'list_visits';
+    }
+}
+
+if ($action == 'list_visits') {
+
+    //see if employee is set
+    $employee_id = filter_input(INPUT_GET, 'employee_id', FILTER_VALIDATE_INT);
+    if ($employee_id == NULL || $employee_id == FALSE) {
+        $employee_id = 1;
+    }
+
+    try {
+        $queryEmployee = 'SELECT * FROM employee';
+        $statement1 = $db->prepare($queryEmployee);
+        $statement1->execute();
+        $employees = $statement1;
+
+        $query2 = 'SELECT msg_id, contactMSG.first_name, contactMSG.last_name, contactMSG.email_address, contactMSG.question, contactMSG.phone_num, contactMSG.employee_id
+    FROM contactMSG
+    JOIN employee on contactMSG.employee_id = employee.employee_id
+    WHERE employee.employee_id = :employee_id';
+        $statement2 = $db->prepare($query2);
+        $statement2->bindValue(":employee_id", $employee_id);
+        $statement2->execute();
+        $visits = $statement2;
+    } catch (PDOException $e) {
+        echo 'Error: ' . $e->getMessage();
+    }
+} else if ($action == 'delete_visit') {
+    $visit_id = filter_input(INPUT_POST, 'visit_id', FILTER_VALIDATE_INT);
+    $query = 'DELETE FROM contactMSG WHERE msg_id = :visit_id';
+    $statement = $db->prepare($query);
+    $statement->bindValue(":visit_id", $visit_id);
+    $statement->execute();
+    $statement->closeCursor();
+    header("Location: admin.php");
+}
 ?>
 
 <!doctype html>
@@ -121,10 +95,10 @@
   <body>
    
     <!-- Bootstrap Navigation bar -->
-<!--    <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark-maroon">
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark-maroon">
         <a class="navbar-brand" href="index.html">The Grid Gaming Club</a>
   
-         Hamburger menu icon 
+            <!-- Hamburger menu icon -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="nabvarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -145,14 +119,53 @@
           </ul>
         </div>
   
-      </nav>-->
+      </nav>
     <!-- Main Content Area -->
     <main class="container mt-5">
 		
         <div class="text-center">
             <br><br>
 
-            <h2 class="display-4 pt-3">Thank you.</h2> 					
+            <h2 class="display-4 pt-3">Admin</h2> 
+            <h3>Select an employee to view messages</h3>
+            <aside>
+                <ul style="list-style-type:none;">
+                    <?php foreach($employees as $employee) : ?>
+                    <li>
+                        <a href="?employee_id=<?php echo $employee['employee_id']; ?>">
+                          <?php echo $employee['first_name'] . ' ' . $employee['last_name']; ?>  
+                        </a>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+            </aside>
+                <table>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                        <th>Phone Number</th>
+                        <th></th>
+                    </tr>
+                    <?php foreach ($visits as $visit) : ?>
+                    <tr>
+                        <td><?php echo $visit['first_name']; ?></td>
+                        <td><?php echo $visit['last_name']; ?></td>
+                        <td><?php echo $visit['email_address']; ?></td>
+                        <td><?php echo $visit['question']; ?></td>
+                        <td><?php echo $visit['phone_num']; ?></td>
+                        <td>
+                            <form action="admin.php" method="post">
+                                <input type="hidden" name="action" value="delete_visit"/>
+                                <input type="hidden" name="visit_id"
+                                       value="<?php echo $visit['visit_id']; ?>"/>
+                                <input type="submit" value="Delete"/>
+                            </form>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </table>
 
 
         </div>
@@ -162,7 +175,7 @@
     <!-- Footer -->
     <footer class="jumbotron-fluid text-center bg-dark-maroon p-5">
 
-      <div class="containter text-white">
+      <div class="container text-white">
         <p>&copy; Copyright 2021. All Rights Reserved.</p>
         <p><a href="mailto:TheGrigGaming@gamil.com" class="text-white">TheGridGaming@gmail.com</a></p>
         <a href="https://www.facebook.com/" target="_blank"><img src="images/facebook-logo.png" alt="black and white Facebook logo" class="pr-4"></a>
