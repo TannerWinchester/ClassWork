@@ -1,5 +1,11 @@
 <?php
-    
+/****************************************************/
+/* DATE             NAME                    DESCRIPTION
+ * --------------------------------------------------
+ * 9/17/2021    TANNER WINCHESTER   creation of modlog and refactoring of code
+ ****************************************************/
+
+
     $fname = filter_input(INPUT_POST, 'fname');
     $lname = filter_input(INPUT_POST, 'lname');
     $phone = filter_input(INPUT_POST, 'phone');
@@ -44,40 +50,13 @@
         echo "Form Data Error: " . $error; 
         exit();
         } else {
-            $dsn = 'mysql:host=localhost;dbname=thegrid';
-            $username = 'grid_user';   //'grid_user';
-            $password = 'Pa$$w0rd';
-
-            try {
-                $db = new PDO($dsn, $username, $password);
-
-            } catch (PDOException $e) {
-                $error_message = $e->getMessage();
-                /* include('database_error.php'); */
-                echo "DB Error: " . $error_message; 
-                exit();
-            }
 
             // Add the product to the database  
-            $query = 'INSERT INTO contactMSG
-	(first_name, last_name, email_address, phone_num, referral_src, is_sports, is_reality, is_member, is_arcade, question, employee_id)
-            VALUES
-                (:fname, :lname, :email, :phone, :reference, :esports, :hyper, :members, :arcade, :comments, 1)';
-            $statement = $db->prepare($query);
-            $statement->bindValue(':fname', $fname);
-            $statement->bindValue(':lname', $lname);
-            $statement->bindValue(':email', $email);
-            $statement->bindValue(':phone', $phone);
-            $statement->bindValue(':reference', $reference);
-            $statement->bindValue(':esports', $esports);
-            $statement->bindValue(':hyper', $hyper);
-            $statement->bindValue(':arcade', $arcade);
-            $statement->bindValue(':members', $members);
-            $statement->bindValue(':comments', $comments);
-            $statement->execute();
-            $statement->closeCursor();
+            require_once('./model/database.php');
+            require_once('./model/visit.php');
             
-//             echo "Fields: " . $fname . $lname . $email . $phone . $reference .  $esports. $hyper . $arcade . $members . $comments;
+            addVisit($fname, $lname, $email, $phone, $reference, $esports, $hyper, $arcade, $members, $comments);
+
 
 }
 
@@ -120,11 +99,11 @@
       </head>
   <body>
    
-    <!-- Bootstrap Navigation bar -->
-<!--    <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark-maroon">
+<!--     Bootstrap Navigation bar 
+-->    <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark-maroon">
         <a class="navbar-brand" href="index.html">The Grid Gaming Club</a>
   
-         Hamburger menu icon 
+<!--         Hamburger menu icon -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="nabvarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -142,11 +121,17 @@
             <li class="nav-item">
               <a class="nav-link" href="contact.html">Contact Us</a>
             </li>
+            <li class="nav-item">
+             <a class="nav-link" href="admin.php">Admin</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="listemployees.php">Emp List</a>
+            </li>
           </ul>
         </div>
   
-      </nav>-->
-    <!-- Main Content Area -->
+      </nav><!--
+     Main Content Area -->
     <main class="container mt-5">
 		
         <div class="text-center">

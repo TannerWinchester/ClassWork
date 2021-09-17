@@ -1,16 +1,14 @@
 <?php
-$dsn = 'mysql:host=localhost;dbname=thegrid';
-        $username = 'grid_user';   //'grid_user';
-        $password = 'Pa$$w0rd';
-
-try {
-    $db = new PDO($dsn, $username, $password);
-} catch (PDOException $e) {
-    $error_message = $e->getMessage();
-    /* include('database_error.php'); */
-    echo "DB Error: " . $error_message;
-    exit();
-}
+/****************************************************/
+/* DATE             NAME                    DESCRIPTION
+ * --------------------------------------------------
+ * 9/10/2021    TANNER WINCHESTER   INITIAL DEPLOYMENT OF FILE
+ * 9/17/2021    Tanner Winchester   changed to use database class, employee & visit
+ * 
+ ****************************************************/
+require_once('./model/database.php');
+require_once('./model/employee.php');
+require_once('./model/visit.php');
 
 //check action; on initial load it is null
 $action = filter_input(INPUT_POST, 'action');
@@ -22,7 +20,6 @@ if ($action == NULL) {
 }
 
 if ($action == 'list_visits') {
-
     //see if employee is set
     $employee_id = filter_input(INPUT_GET, 'employee_id', FILTER_VALIDATE_INT);
     if ($employee_id == NULL || $employee_id == FALSE) {
@@ -30,36 +27,19 @@ if ($action == 'list_visits') {
     }
 
     try {
-        $queryEmployee = 'SELECT * FROM employee';
-        $statement1 = $db->prepare($queryEmployee);
-        $statement1->execute();
-        $employees = $statement1;
-
-        $query2 = 'SELECT msg_id, contactMSG.first_name, contactMSG.last_name, contactMSG.email_address, contactMSG.question, contactMSG.phone_num, contactMSG.employee_id
-    FROM contactMSG
-    JOIN employee on contactMSG.employee_id = employee.employee_id
-    WHERE employee.employee_id = :employee_id';
-        $statement2 = $db->prepare($query2);
-        $statement2->bindValue(":employee_id", $employee_id);
-        $statement2->execute();
-        $visits = $statement2;
+        $employees = EmployeeDB::getEmployeeList();
+        
+        $visits = getVisitByEmp($employee_id);
     } catch (PDOException $e) {
         echo 'Error: ' . $e->getMessage();
     }
 } else if ($action == 'delete_visit') {
-    $visit_id = filter_input(INPUT_POST, 'visit_id', FILTER_VALIDATE_INT);
-    $query = 'DELETE FROM contactMSG WHERE msg_id = :visit_id';
-    $statement = $db->prepare($query);
-    $statement->bindValue(":visit_id", $visit_id);
-    $statement->execute();
-    $statement->closeCursor();
+    delVisit($visit_id);
     header("Location: admin.php");
 }
 ?>
-
 <!doctype html>
 <!-- Student Name: Tanner Winchester -->
-
 <html lang="en">
     <head>
         <!-- Required meta tags -->
@@ -115,6 +95,12 @@ if ($action == 'list_visits') {
             </li>
             <li class="nav-item">
               <a class="nav-link" href="contact.html">Contact Us</a>
+            </li>
+            <li class="nav-item">
+             <a class="nav-link" href="admin.php">Admin</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="listemployees.php">Emp List</a>
             </li>
           </ul>
         </div>
