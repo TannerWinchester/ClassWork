@@ -3,9 +3,11 @@
 /* DATE             NAME                    DESCRIPTION
  * --------------------------------------------------
  * 9/17/2021    TANNER WINCHESTER   INITIAL DEPLOYMENT OF FILE
- * 
+ * 9/22/2021    Tanner              added authentication & secure connection.
  ****************************************************/
 require_once('./model/database.php');
+require_once('./util/secure_conn.php');
+require_once('./util/valid_admin.php');
 require_once('./model/employee.php');
 
 
