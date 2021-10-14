@@ -52,39 +52,39 @@ go
 
 CREATE TABLE borrower
 (borrowerID			INT			NOT NULL PRIMARY KEY,
-borrowerFName		CHAR(10)	NOT NULL,
-borrowerLName		CHAR(10)	NOT NULL,
-borrowerPhoneNum	CHAR(10)	NOT NULL
+borrowerFName		CHAR(60)	NOT NULL,
+borrowerLName		CHAR(60)	NOT NULL,
+borrowerPhoneNum	CHAR(20)	NOT NULL
 );
 
 CREATE TABLE artist
 (artistID		INT			NOT NULL PRIMARY KEY,	
-artistName		CHAR(10)	NOT NULL,
+artistName		NCHAR(60)	NOT NULL,
 artistTypeID	INT			NOT NULL REFERENCES artistType(artistTypeID));
 
 
-CREATE TABLE diskHasBorrower
-(diskBorrower	INT		NOT NULL PRIMARY KEY,
-borrowerID		INT		NOT NULL REFERENCES borrower(borrowerID),
-borrowedDate	DATE	NOT NULL,
-returnedDate	DATE	NULL,
-cdID			INT		NOT NULL);
-
 CREATE TABLE diskHasArtist
-(diskArtist		CHAR(10)	NOT NULL PRIMARY KEY,
+(diskArtist		INT	NOT NULL PRIMARY KEY,
 artistID		INT			NOT NULL REFERENCES artist(artistID),
 cdID			INT			NOT NULL);
 
 
 CREATE TABLE disk
 (cdID			INT			NOT NULL PRIMARY KEY,
-cdName			CHAR(10)	NOT NULL,
+cdName			CHAR(60)	NOT NULL,
 releaseDate		DATE		NOT NULL, 
-borrowerID		INT			NOT NULL REFERENCES borrower(borrowerID),
 artistID		INT			NOT NULL REFERENCES artist(artistID),
 genreID			INT			NOT NULL REFERENCES genreType(genreID),
 statusID		INT			NOT NULL REFERENCES status(statusID),
 diskTypeID		INT			NOT NULL REFERENCES diskType(diskTypeID));
+
+CREATE TABLE diskHasBorrower
+(diskBorrower	INT		NOT NULL PRIMARY KEY,
+borrowerID		INT		NOT NULL REFERENCES borrower(borrowerID),
+borrowedDate	DATE	NOT NULL,
+returnedDate	DATE	NULL,
+cdID			INT		NOT NULL REFERENCES Disk(cdID));
+
 
 
 
