@@ -5,6 +5,9 @@
 *10/13/2021		Tanner winchester	updated tables and added more memory to char data types.
 *10/14/2021		Tanner Winchester	Added insert statements to populate db.
 *10/15/2021		Tanner Winchester	finsished populating data.
+*10/20/2021		Tanner Winchester	Edited and fixed some minor bugs in tabels
+*10/21/2021		Tanner Winchester	changed artist table to nvarchar and added individual view for artist
+
 ****************************************************************************************/
 -- drop and create db
 USE master;
@@ -62,7 +65,7 @@ borrowerPhoneNum	CHAR(20)	NOT NULL
 
 CREATE TABLE artist
 (artistID		INT			NOT NULL PRIMARY KEY IDENTITY,	
-artistName		NCHAR(60)	NOT NULL,
+artistName		NVARCHAR(60)	NOT NULL,
 artistTypeID	INT			NOT NULL REFERENCES artistType(artistTypeID));
 
 
@@ -279,8 +282,24 @@ VALUES
 	(6, 9, '1-19-2021', NULL),
 	(8, 10, '1-23-2021', NULL);
 
+GO
+
+CREATE VIEW IndividualArtist  --step 4
+AS
+	select artistName, iif(charindex(' ', artistName) > 0 , 
+                left(artistName, charindex(' ', artistName) - 1), artistName) as first,
+                iif(charindex(' ', artistName) > 0 ,
+                right(artistName, len(artistName) - charindex(' ', artistName)), '') as last
+	from artist
+GO
+select first
+from IndividualArtist;
+
+
+
 
 
 select * 
 from diskHasBorrower
 where returnedDate is NULL;
+
