@@ -7,7 +7,7 @@
 *10/15/2021		Tanner Winchester	finsished populating data.
 *10/20/2021		Tanner Winchester	Edited and fixed some minor bugs in tabels
 *10/21/2021		Tanner Winchester	changed artist table to nvarchar and added individual view for artist
-
+*10/25/2021		Tanner Winchester	add insert and update sp's for disk has borrower.
 ****************************************************************************************/
 -- drop and create db
 USE master;
@@ -284,7 +284,19 @@ VALUES
 
 GO
 
-CREATE VIEW IndividualArtist  --step 4
+select * 
+from diskHasBorrower
+where returnedDate is NULL;
+
+
+--project 4 
+
+select cdName, releaseDate --step 3 show the disks in your database and any associated individual artists only.
+from disk
+where statusID = 1;
+go
+
+CREATE VIEW IndividualArtist  --step 4 create view that shows artists names and no group names.
 AS
 	select artistName, iif(charindex(' ', artistName) > 0 , 
                 left(artistName, charindex(' ', artistName) - 1), artistName) as first,
@@ -292,14 +304,82 @@ AS
                 right(artistName, len(artistName) - charindex(' ', artistName)), '') as last
 	from artist
 GO
-select first
+select last
 from IndividualArtist;
 
 
+--5
+select cdName, releaseDate
+from disk
+where statusID = 2;
+
+--6.
+
+
+--7.
+
+
+--8.
+
+
+--9.
+
+
+--10.
 
 
 
-select * 
-from diskHasBorrower
-where returnedDate is NULL;
+
+
+
+
+
+--LAB WK5DAY1 CHAPTER 15
+use disk_inventorytw;
+go
+--1.
+DROP PROC IF EXISTS sp_ins_diskHasBorrower
+GO
+CREATE PROC sp_ins_diskHasBorrower
+	@borrowerID int, @cdID int, @borrowedDate date, @returnedDate date = NULL
+AS
+BEGIN TRY
+	INSERT INTO diskHasBorrower
+		(borrowerID, cdID, borrowedDate, returnedDate)
+		VALUES
+			(@borrowerID, @cdID, @borrowedDate, @returnedDate);
+END TRY
+BEGIN CATCH
+	print 'an error ocured. row was not inserted.';
+	PRINT 'Error number: ' + CONVERT(varchar, ERROR_NUMBER());
+	print 'error message: ' + CONVERT(varchar(255), ERROR_MESSAGE());
+END CATCH
+GO
+EXEC sp_ins_diskHasBorrower 20, 19, '10/25/2021'
+EXEC sp_ins_diskHasBorrower 20, 19, '10/01/2021','10/10/2021'
+EXEC sp_ins_diskHasBorrower 20, 100, '10/04/2021','10/20/2021'
+GO
+
+--2.
+DROP PROC IF EXISTS sp_upd_diskHasBorrower;
+go
+CREATE PROC sp_upd_diskHasBorrower
+	@borrowerID int, @cdID int, @borrowedDate date, @returnedDate date = NULL
+AS
+BEGIN TRY
+UPDATE diskHasBorrower
+	SET cdID = @cdID, borrowerID = @borrowerID, borrowedDate = @borrowedDate, returnedDate = @returnedDate
+	WHERE borrowerID = @borrowerID;
+END TRY
+BEGIN CATCH
+	print 'an error ocured. row was not updated.';
+	PRINT 'Error number: ' + CONVERT(varchar, ERROR_NUMBER());
+	print 'error message: ' + CONVERT(varchar(255), ERROR_MESSAGE());
+END CATCH
+GO
+EXEC sp_upd_diskHasBorrower 12, 1, '1/1/2021', '2/2/2021'
+EXEC sp_upd_diskHasBorrower 12, 1, '1/1/2021';
+EXEC sp_upd_diskHasBorrower 22, 111, '1/1/2021';
+
+
 
