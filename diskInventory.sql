@@ -291,41 +291,101 @@ where returnedDate is NULL;
 
 --project 4 
 
-select cdName, releaseDate --step 3 show the disks in your database and any associated individual artists only.
+select cdName, releaseDate, artistName --step 3 show the disks in your database and any associated individual artists only.
 from disk
+join diskHasArtist
+on
+disk.cdID = diskHasArtist.cdID
+join artist
+on
+artist.artistID = diskHasArtist.artistID
 where statusID = 1;
 go
 
+drop view if exists IndividualArtist
+GO
+
 CREATE VIEW IndividualArtist  --step 4 create view that shows artists names and no group names.
 AS
-	select artistName, iif(charindex(' ', artistName) > 0 , 
+	select artistID, artistName, iif(charindex(' ', artistName) > 0 , 
                 left(artistName, charindex(' ', artistName) - 1), artistName) as first,
                 iif(charindex(' ', artistName) > 0 ,
                 right(artistName, len(artistName) - charindex(' ', artistName)), '') as last
 	from artist
+	where artistTypeID = 1;
 GO
-select last
+select first
 from IndividualArtist;
 
 
 --5
-select cdName, releaseDate
+select cdName, releaseDate, artistName 
 from disk
-where statusID = 2;
+join diskHasArtist
+on
+disk.cdID = diskHasArtist.cdID
+join artist
+on
+artist.artistID = diskHasArtist.artistID
+where artistTypeID = 2;
 
 --6.
+select cdName, releaseDate, artistName 
+from disk
+join diskHasArtist
+on
+disk.cdID = diskHasArtist.cdID
+join artist
+on
+artist.artistID = diskHasArtist.artistID
+where artist.artistID NOT IN 
+	(select IndividualArtist.artistID
+	from IndividualArtist);
+go
 
 
 --7.
+select borrowerFName, borrowerLName, disk.cdID, borrowedDate, returnedDate, cdName
+from diskHasBorrower
+join disk
+on 
+disk.cdID = diskHasBorrower.cdID
+join borrower
+on
+borrower.borrowerID = diskHasBorrower.borrowerID
+go
+
+
 
 
 --8.
+select  count(disk.cdID) AS TimesBorrowed , cdName
+from diskHasBorrower
+join disk
+on 
+disk.cdID = diskHasBorrower.cdID
+join borrower
+on
+borrower.borrowerID = diskHasBorrower.borrowerID
+group by disk.cdID, cdName
+go
+
 
 
 --9.
+select cdName, borrowedDate, returnedDate, borrowerLName
+from diskHasBorrower
+join disk
+on
+disk.cdID = diskHasBorrower.cdID
+join borrower
+on
+borrower.borrowerID = diskHasBorrower.borrowerID
+where returnedDate is null
+order by cdName asc;
 
 
---10.
+
 
 
 
