@@ -8,6 +8,7 @@
 *10/20/2021		Tanner Winchester	Edited and fixed some minor bugs in tabels
 *10/21/2021		Tanner Winchester	changed artist table to nvarchar and added individual view for artist
 *10/25/2021		Tanner Winchester	add insert and update sp's for disk has borrower.
+*10/27/2021		Tanner Winchester	Add ins, upd & del sp's for artsist, and borrower & disk.
 ****************************************************************************************/
 -- drop and create db
 USE master;
@@ -388,12 +389,6 @@ order by cdName asc;
 
 
 
-
-
-
-
-
-
 --LAB WK5DAY1 CHAPTER 15
 use disk_inventorytw;
 go
@@ -415,11 +410,14 @@ BEGIN CATCH
 	print 'error message: ' + CONVERT(varchar(255), ERROR_MESSAGE());
 END CATCH
 GO
-EXEC sp_ins_diskHasBorrower 20, 19, '10/25/2021'
-EXEC sp_ins_diskHasBorrower 20, 19, '10/01/2021','10/10/2021'
-EXEC sp_ins_diskHasBorrower 20, 100, '10/04/2021','10/20/2021'
+EXEC sp_ins_diskHasBorrower 20, 19, '10/25/2021';
+go
+EXEC sp_ins_diskHasBorrower 20, 19, '10/01/2021','10/10/2021';
+go
+EXEC sp_ins_diskHasBorrower 20, 100, '10/04/2021','10/20/2021';
 GO
-
+GRANT EXEC ON sp_ins_diskHasBorrower TO ProjectUserTW;
+GO
 --2.
 DROP PROC IF EXISTS sp_upd_diskHasBorrower;
 go
@@ -437,9 +435,207 @@ BEGIN CATCH
 	print 'error message: ' + CONVERT(varchar(255), ERROR_MESSAGE());
 END CATCH
 GO
-EXEC sp_upd_diskHasBorrower 12, 1, '1/1/2021', '2/2/2021'
+EXEC sp_upd_diskHasBorrower 12, 1, '1/1/2021', '2/2/2021';
+go
 EXEC sp_upd_diskHasBorrower 12, 1, '1/1/2021';
+go
 EXEC sp_upd_diskHasBorrower 22, 111, '1/1/2021';
+go
+GRANT EXEC ON sp_upd_diskHasBorrower TO ProjectUserTW;
+GO
 
+----------------PROJECT 5 add stored procedures for artist, borrower and disk--------------------------
 
+--2. artist
+DROP PROC IF EXISTS sp_ins_artist
+GO
+CREATE PROC sp_ins_artist
+	@artistName nvarchar(60), @artistTypeID int
+AS
+BEGIN TRY
+INSERT INTO artist
+	(artistName, artistTypeID)
+VALUES
+	(@artistName, @artistTypeID);
+END TRY
+BEGIN CATCH
+	PRINT 'an error ocured. row was not inserted.';
+	PRINT 'Error number: ' + CONVERT(varchar, ERROR_NUMBER());
+	PRINT 'Error message: ' + CONVERT(varchar(255), ERROR_MESSAGE());
+END CATCH
+GO
+EXEC sp_ins_artist 'Cher', 1;
+GO
+GRANT EXEC ON sp_ins_artist TO ProjectUserTW;
+GO
+--update artist
+DROP PROC IF EXISTS sp_upd_artist
+GO
+CREATE PROC sp_upd_artist
+	@artistID int, @artistName nvarchar(60), @artistTypeID int
+AS
+BEGIN TRY
+UPDATE artist
+SET artistName = @artistName, artistTypeID = @artistTypeID
+WHERE artistID = @artistID;
+END TRY
+BEGIN CATCH
+	PRINT 'an error ocured. row was not updated.';
+	PRINT 'Error number: ' + CONVERT(varchar, ERROR_NUMBER());
+	PRINT 'Error message: ' + CONVERT(varchar(255), ERROR_MESSAGE());
+END CATCH
+GO
+EXEC sp_upd_artist 22, 'Cher Updated with variable', 2;
+GO
+GRANT EXEC ON sp_upd_artist TO ProjectUserTW;
+GO
 
+--delete artist
+DROP PROC IF EXISTS sp_del_artist
+GO
+CREATE PROC sp_del_artist
+	@artistID int
+AS
+BEGIN TRY
+	DELETE artist
+	WHERE artistID = @artistID
+END TRY
+BEGIN CATCH
+	PRINT 'an error ocured. row was not deleted.';
+	PRINT 'Error number: ' + CONVERT(varchar, ERROR_NUMBER());
+	PRINT 'Error message: ' + CONVERT(varchar(255), ERROR_MESSAGE());
+END CATCH
+GO
+EXEC sp_del_artist 21;
+GO
+GRANT EXEC ON sp_del_artist TO ProjectUserTW;
+go
+
+--3.borrower
+DROP PROC IF EXISTS sp_ins_borrower
+GO
+CREATE PROC sp_ins_borrower
+	@borrowerFName char(60), @borrowerLName char(60), @borrowerPhoneNum char(60)
+AS
+BEGIN TRY
+INSERT INTO borrower
+	(borrowerFName, borrowerLName, borrowerPhoneNum)
+VALUES
+	(@borrowerFName, @borrowerLName, @borrowerPhoneNum)
+END TRY
+BEGIN CATCH
+	PRINT 'an error ocured. row was not inserted.';
+	PRINT 'Error number: ' + CONVERT(varchar, ERROR_NUMBER());
+	PRINT 'Error message: ' + CONVERT(varchar(255), ERROR_MESSAGE());
+END CATCH
+GO
+EXEC sp_ins_borrower 'Tiger','Woods','20896312211';
+GO
+GRANT EXEC ON sp_ins_borrower TO ProjectUserTW;
+GO
+select * from borrower;
+--UPDATE BORROWER
+DROP PROC IF EXISTS sp_upd_borrower
+GO
+CREATE PROC sp_upd_borrower
+	@borrowerID int, @borrowerFName char(60), @borrowerLName char(60), @borrowerPhoneNum char(60)
+AS
+BEGIN TRY
+UPDATE borrower
+SET borrowerFName = @borrowerFName, borrowerLName = @borrowerLName, borrowerPhoneNum = @borrowerPhoneNum
+WHERE borrowerID = @borrowerID; 
+END TRY
+BEGIN CATCH
+	PRINT 'an error ocured. row was not updated.';
+	PRINT 'Error number: ' + CONVERT(varchar, ERROR_NUMBER());
+	PRINT 'Error message: ' + CONVERT(varchar(255), ERROR_MESSAGE());
+END CATCH
+GO
+EXEC sp_upd_borrower 21, 'Tiger', 'Woods Updated', '208909363321';
+GO
+GRANT EXEC ON sp_upd_borrower TO ProjectUserTW;
+GO
+--DELETE BORROWER
+DROP PROC IF EXISTS sp_del_borrower
+GO
+CREATE PROC sp_del_borrower
+	@borrowerID int
+AS
+BEGIN TRY
+	DELETE borrower
+	WHERE borrowerID = @borrowerID
+END TRY
+BEGIN CATCH
+	PRINT 'an error ocured. row was not deleted.';
+	PRINT 'Error number: ' + CONVERT(varchar, ERROR_NUMBER());
+	PRINT 'Error message: ' + CONVERT(varchar(255), ERROR_MESSAGE());
+END CATCH
+GO
+EXEC sp_del_borrower 21;
+GO
+GRANT EXEC ON sp_del_borrower TO ProjectUserTW;
+GO
+--4. disk
+DROP PROC IF EXISTS sp_ins_disk
+GO
+CREATE PROC sp_ins_disk
+	@cdName char(60), @releaseDate date, @artistID int, @genreID int, @statusID int, @diskTypeID int
+AS
+BEGIN TRY
+INSERT INTO disk
+	(cdName, releaseDate, artistID, genreID, statusID, diskTypeID)
+VALUES
+	(@cdName, @releaseDate, @artistID, @genreID, @statusID, @diskTypeID);
+END TRY
+BEGIN CATCH
+	PRINT 'an error ocured. row was not inserted.';
+	PRINT 'Error number: ' + CONVERT(varchar, ERROR_NUMBER());
+	PRINT 'Error message: ' + CONVERT(varchar(255), ERROR_MESSAGE());
+END CATCH
+GO
+EXEC sp_ins_disk 'Journals', '2/14/2015', 1, 2, 1, 3;
+GO
+GRANT EXEC ON sp_ins_disk TO ProjectUserTW;
+GO
+--UPDATE DISK
+select * from disk;
+DROP PROC IF EXISTS sp_upd_disk
+GO
+CREATE PROC sp_upd_disk
+	@cdID int, @cdName char(60), @releaseDate date, @artistID int, @genreID int, @statusID int, @diskTypeID int
+AS
+BEGIN TRY
+UPDATE disk
+SET cdName = @cdName, releaseDate = @releaseDate, artistID = @artistID, statusID = @statusID, diskTypeID = @diskTypeID
+WHERE cdID = @cdID;
+END TRY
+BEGIN CATCH
+	PRINT 'an error ocured. row was not updated.';
+	PRINT 'Error number: ' + CONVERT(varchar, ERROR_NUMBER());
+	PRINT 'Error message: ' + CONVERT(varchar(255), ERROR_MESSAGE());
+END CATCH
+GO
+EXEC sp_upd_disk 21, 'Journals Updated', '2/15/2021', 1, 2, 1, 3;
+GO
+GRANT EXEC ON sp_upd_disk TO ProjectUserTW;
+GO
+--delete disk
+DROP PROC IF EXISTS sp_del_disk
+GO
+CREATE PROC sp_del_disk
+	@cdID int
+AS
+BEGIN TRY
+	DELETE disk
+	WHERE cdID = @cdID;
+END TRY
+BEGIN CATCH
+	PRINT 'an error ocured. row was not deleted.';
+	PRINT 'Error number: ' + CONVERT(varchar, ERROR_NUMBER());
+	PRINT 'Error message: ' + CONVERT(varchar(255), ERROR_MESSAGE());
+END CATCH
+GO
+EXEC sp_del_disk 21;
+GO
+GRANT EXEC ON sp_del_disk TO ProjectUserTW;
+GO
